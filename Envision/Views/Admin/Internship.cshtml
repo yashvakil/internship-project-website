@@ -1,0 +1,499 @@
+﻿@model Envision.Models.InternshipView
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Envision</title>
+    <!-- Bootstrap core CSS-->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="~/Content/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: #000;
+                padding: 14px 16px;
+                background-color: inherit;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #032042;
+                color: #ffffff;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #032042;
+                    color: #fff;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+
+        * {
+            margin: 0;
+            outline: 0;
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            margin: 30px auto 0;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-weight: normal;
+            margin-bottom: 0.2rem;
+        }
+
+        .wrap p {
+            font-size: 1.125rem;
+            color: #444;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .wrap a {
+            color: #4687c9;
+        }
+
+        .wrap p.sub-title {
+            font-size: 1.5rem;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        .lud {
+            margin: 3rem 0 4rem;
+        }
+
+        .recipe-card {
+            background: #ececec;
+            color: #000;
+            border: 0.2px solid #032042;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            margin: 0.5em;
+            width: 100%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+            .recipe-card article {
+                padding: 1.25em 1.5em;
+            }
+
+                .recipe-card article ul {
+                    list-style: none;
+                    margin: 0.5em 0 0;
+                    padding: 0;
+                }
+
+                    .recipe-card article ul li {
+                        display: inline-block;
+                        margin-left: 1em;
+                        line-height: 1em;
+                    }
+
+                        .recipe-card article ul li:first-child {
+                            margin-left: 0;
+                        }
+
+                        .recipe-card article ul li .icon {
+                            vertical-align: bottom;
+                        }
+
+                        .recipe-card article ul li span:nth-of-type(2) {
+                            margin-left: 0.5em;
+                            font-size: 0.8em;
+                            font-weight: 300;
+                            vertical-align: middle;
+                            color: #838689;
+                        }
+
+                .recipe-card article .button {
+                    right: 3%;
+                    position: relative;
+                    display: inline-block;
+                    outline: 0;
+                    padding: 8px 16px;
+                    overflow: hidden;
+                    text-decoration: none;
+                    color: inherit;
+                    background-color: inherit;
+                    text-align: center;
+                    cursor: pointer;
+                    white-space: nowrap;
+                }
+
+                .recipe-card article h2, .recipe-card article h3 {
+                    margin: 0;
+                    font-weight: 300;
+                }
+
+                .recipe-card article h2 {
+                    font-size: 1.75em;
+                    color: #032042;
+                }
+
+                .recipe-card article h3 {
+                    font-size: 0.9375em;
+                    color: #002aff;
+                }
+
+                .recipe-card article p {
+                    margin: 1.25em 0;
+                    font-size: 0.9375em;
+                    font-weight: 400;
+                    color: #222222;
+                }
+
+                    .recipe-card article p span {
+                        font-weight: 700;
+                        color: #000000;
+                    }
+
+                .recipe-card article table {
+                    width: 100%;
+                }
+
+                    .recipe-card article table tr th {
+                        font-size: 15px;
+                        font-weight: 400;
+                        color: #222222;
+                    }
+
+                    .recipe-card article table tr td {
+                        text-align: center;
+                    }
+
+                    .recipe-card article table tr th span {
+                        font-weight: 700;
+                        color: #000000;
+                    }
+
+                .recipe-card article .ingredients {
+                    margin: 2em 0 0.5em;
+                }
+
+
+        .ex-20 {
+            border: none;
+            border-radius: 5px;
+            padding: .875rem 2rem;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            background-color: #4CAF50;
+            width: 100%;
+            border: none;
+            text-align: center;
+            color: #ffffff;
+        }
+
+            .ex-20 :hover {
+                background: #;
+                color: #222;
+            }
+
+        .ex-6 i,
+        .ex-6 .title {
+            color: #032042;
+        }
+
+        .ex-6 .title {
+            font-weight: 500;
+        }
+
+        .ex-6 .col {
+            display: flex;
+            width: calc(50% - 1rem);
+            margin-bottom: 1.5rem;
+        }
+
+            .ex-6 .col p:not(.title) {
+                color: #000;
+                font-size: 1rem;
+            }
+
+            .ex-6 .col:nth-child(2n - 1) {
+                margin-right: 2rem;
+            }
+
+        .ex-6 .icon-col {
+            width: 12rem;
+        }
+
+        .ex-6 i {
+            font-size: 2rem;
+        }
+
+        .ex-6 {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .skills {
+            width: 100%;
+            background-color: #E0E0E0;
+            border-radius: 10px;
+            position: relative;
+            color: #333; /* position the header relative to the div */
+        }
+
+            .skills ul {
+                padding: 20px 10px 10px 10px;
+                margin: 0;
+            }
+
+            .skills li {
+                font-size: 16px;
+                margin: 5px 5px;
+                display: inline-block;
+                padding: 4px 10px;
+                border: 1px solid #B8B8B8;
+                border-radius: 5px;
+                background-color: #EBEBEB;
+                background-size: 16px;
+            }
+    </style>
+</head>
+<body style="background:rgba(255, 255, 255,0.3)">
+    @Html.Partial("~/Views/Shared/AdminHeader.cshtml")
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="w3-row-padding w3-container" style="margin-top:100px;">
+                <button onclick="window.location.href = '/Admin/DeleteInternship?internshipid=@Model.Id'"> Delete </button>
+            </div>
+            <div class="wrap" style="margin-top:100px;">
+                <div class="recipe-card">
+                    <article>
+                        @{
+                            Dictionary<string, string> dict = new Dictionary<string, string>();
+                            dict["WH"] = "Work From Home";
+                            dict["PT"] = "Part Time";
+                            dict["FT"] = "Full Time";
+                        }
+                        <h2 style="font-weight: bold">
+                            @Html.DisplayFor(modelItem => Model.InternshipIn)
+                            <label class="button" style="float: right;background-color:#000;color: #fff;cursor:none;border-radius:5px;height:30px;font-size:12px;">@dict[Model.InternshipType]</label>
+                        </h2>
+                        <h3 style="margin-top: -7px;font-weight: 500">@Html.DisplayFor(modelItem => Model.C_Name)</h3>
+                        <p class="ingredients">
+                            <span>Locations:&nbsp;</span>@foreach (var l in Model.InternshipLocations)
+                            {
+                                @Html.DisplayFor(modell => l) @:&nbsp
+                            }
+                        </p>
+                        <table>
+                            <tr>
+                                <th><span>Start Date</span></th>
+                                <th><span>Apply Before</span></th>
+                                <th><span>Posted On</span></th>
+                            </tr>
+                            <tr>
+                                @if (String.IsNullOrEmpty(Model.StartDate.ToString()))
+                                {
+                                    <td>Immediately</td>
+                                }
+                                else
+                                {
+                                    var sd = ((DateTime)Model.StartDate).ToShortDateString();
+                                    <td>@Html.DisplayFor(modelItem => sd)</td>
+                                }
+                                @{var ab = Model.ApplyBefore.ToShortDateString();}
+                                @{var po = Model.PostedOn.ToShortDateString();}
+                                <td>@Html.DisplayFor(modelItem => ab)</td>
+                                <td>@Html.DisplayFor(modelItem => po)</td>
+                            </tr>
+                        </table>
+                        <br>
+                        <ul class="w3-row">
+                            <li><span class="fa fa-clock-o fa-lg w3-text-blue"></span><span>@Html.DisplayFor(modelItem => Model.MinDuration) Month</span></li>
+                            <li><span class="fa fa-users fa-lg w3-text-blue"></span><span>@Html.DisplayFor(modelItem => Model.AvailableSeats) Seats</span></li>
+                            @if (Model.Stipend == null)
+                            {
+                                <li><span class="fa fa-money fa-lg w3-text-blue"></span><span>None Rs</span></li>
+                            }
+                            else
+                            {
+                                <li><span class="fa fa-money fa-lg w3-text-blue"></span><span>@Html.DisplayFor(modelItem => Model.Stipend) Rs</span></li>
+                            }
+                        </ul>
+                        <p class="ingredients">
+                            <span>Contact Email:&nbsp;</span>@Model.ContactEmail
+                        </p>
+                        @if (@Model.ContactMobile != null)
+                        {
+                            <p class="ingredients">
+                                <span>Contact Mobile:&nbsp;</span>@Model.ContactMobile
+                            </p>
+                        }
+                    </article>
+                </div>
+            </div>
+            <div class="wrap">
+                <h1>About Company</h1>
+                <p>@Html.DisplayFor(model => Model.AboutCompany)</p>
+            </div>
+            <div class="wrap">
+                <h1>Skills Required</h1>
+                <div class="skills">
+                    <ul>
+                        @foreach (var s in Model.InternshipSkills)
+                        {
+                            <li>@s</li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="wrap">
+                <h1>Internship Work</h1>
+                <p>@Html.DisplayFor(model => Model.About)</p>
+            </div>
+            <div class="wrap">
+                <h1>Internship Perks</h1>
+                <div class="example ex-6">
+                    @foreach (var l in Model.InternshipPerks)
+                    {
+                        <div class="col">
+                            <div class="icon-col">
+                                <i class="fa fa-certificate"></i>
+                            </div>
+                            <div class="text-col">
+                                <p class="title">@l.Name</p>
+                                <p>@l.Description</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="w3-margin-top">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> Applicants
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Current Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        dict["AP"] = "Approved";
+                                        dict["ST"] = "Starred";
+                                        dict["DN"] = "Denied";
+                                        dict["IP"] = "No Status";
+                                    }
+                                    @foreach (var item in Model.stud)
+                                    {
+                                            <tr class="@item.Status">
+                                                <td>@item.S_Name</td>
+                                                <td>@dict[item.Status]</td>
+                                                <td style="background:#fff;">
+                                                    <button type="button" class="button" onclick="window.location.href = '/Admin/Student/Details/@item.S_Id'">Details</button>
+                                                    <button type="button" class="button w3-margin-left" onclick="window.location.href='/Internship/Apply?studentid=@item.S_Id&internshipid=@Model.Id&status=AP'">Approve</button>
+                                                    @if (item.Status.Equals("ST"))
+                                                    {
+                                                        <i class="fa fa-star fa-lg w3-margin-left"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-star-o fa-lg w3-margin-left" style="cursor:pointer" onclick="window.location.href='/Internship/Apply?studentid=@item.S_Id&internshipid=@Model.Id&status=ST'"></i>
+                                                    }
+                                                    @if (!item.Status.Equals("DN"))
+                                                    {
+                                                        <i class="fa fa-times fa-lg w3-margin-left" style="cursor:pointer" onclick="window.location.href='/Internship/Apply?studentid=@item.S_Id&internshipid=@Model.Id&status=DN'"></i>
+                                                    }
+
+                                                </td>
+                                            </tr>
+
+                                       }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="~/Content/vendor/chart.js/Chart.min.js"></script>
+    <script src="~/Content/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Content/js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="~/Content/js/sb-admin-datatables.min.js"></script>
+    <script src="~/Content/js/sb-admin-charts.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('table.display').DataTable();
+        });
+    </script>
+</body>
+</html>

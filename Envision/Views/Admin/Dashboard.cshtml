@@ -1,0 +1,298 @@
+﻿@model Envision.Models.ADashboard
+@using System.Data;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Envision</title>
+    <!-- Bootstrap core CSS-->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="~/Content/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+<style>
+input[type="submit"]
+        {
+            margin:0 auto;
+            cursor: pointer;
+            background-color: transparent;
+            border: 2px solid #ff006e;
+            width:100%;
+            padding:5px;
+            color: #000;
+            letter-spacing:2px;
+            text-align:center;
+        }
+        .err{
+            color: #ff0000;
+            width: 90%;
+            font-size: .9em;
+        }
+.switch-field {
+    margin-top:5px;
+	font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
+	overflow: hidden;
+}
+
+.switch-title {
+	margin-bottom: 3px;
+}
+
+.switch-field input {
+	position: absolute !important;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+
+.switch-field label {
+	float: left;
+}
+
+.switch-field label {
+	display: inline-block;
+	min-width: 60px;
+	background-color: #e4e4e4;
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 14px !important;
+	font-weight: normal !important;
+	text-align: center !important;
+	text-shadow: none !important;
+	padding: 6px 14px !important;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3),
+		0 1px rgba(255, 255, 255, 0.1);
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+	-webkit-transition: all 0.1s ease-in-out;
+	-moz-transition: all 0.1s ease-in-out;
+	-ms-transition: all 0.1s ease-in-out;
+	-o-transition: all 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+	cursor: pointer;
+}
+
+.switch-field input:checked + label {
+	background-color: #a5dc86;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.switch-field label:first-of-type {
+	border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+	border-radius: 0 4px 4px 0;
+}
+</style>
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    <!-- Navigation-->
+    @Html.Partial("~/Views/Shared/AdminHeader.cshtml")
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            
+            <!-- Icon Cards-->
+            <div class="row">
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-primary o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa fa-fw fa-users"></i>
+                            </div>
+                            <div class="mr-5">@Model.CountSessions Current Sessions!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-warning o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa fa-fw fa-list"></i>
+                            </div>
+                            <div class="mr-5">@Model.CountUsers New Users!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-success o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa fa-fw fa-support"></i>
+                            </div>
+                            <div class="mr-5">@Model.CountPosts New Posts!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-3">
+                    <div class="card text-white bg-danger o-hidden h-100">
+                        <div class="card-body">
+                            <div class="card-body-icon">
+                                <i class="fa fa-fw fa-comments"></i>
+                            </div>
+                            <div class="mr-5">@Model.CountMsgs Unread Msgs!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Area Chart Example-->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <form action="/Admin/Dashboard" method="post">
+                        <textarea rows="10" style="width:100%;" name="query">@Model.Query</textarea>
+                        <span class="err">@Model.Error</span><br />
+                        <div class="switch-field">
+                            @if (string.IsNullOrWhiteSpace(Model.Type) || Model.Type.Equals("SELECT"))
+                            {
+                                <div class="switch-title">Select Type Of Query</div>
+                                <input type="radio" id="SELECT" name="type" value="SELECT" checked />
+                                <label for="SELECT"> SELECT </label>
+                                <input type="radio" id="INSERT" name="type" value="INSERT" />
+                                <label for="INSERT"> INSERT </label>
+                                <input type="radio" id="UPDATE" name="type" value="UPDATE" />
+                                <label for="UPDATE"> UPDATE </label>
+                                <input type="radio" id="DELETE" name="type" value="DELETE" />
+                                <label for="DELETE"> DELETE </label>
+                            }
+                            else if (Model.Type.Equals("INSERT"))
+                            {
+                                <div class="switch-title">Select Type Of Query</div>
+                                <input type="radio" id="SELECT" name="type" value="SELECT" />
+                                <label for="SELECT"> SELECT </label>
+                                <input type="radio" id="INSERT" name="type" value="INSERT" checked />
+                                <label for="INSERT"> INSERT </label>
+                                <input type="radio" id="UPDATE" name="type" value="UPDATE" />
+                                <label for="UPDATE"> UPDATE </label>
+                                <input type="radio" id="DELETE" name="type" value="DELETE" />
+                                <label for="DELETE"> DELETE </label>
+                            }
+                            else if (Model.Type.Equals("UPDATE"))
+                            {
+                                <div class="switch-title">Select Type Of Query</div>
+                                <input type="radio" id="SELECT" name="type" value="SELECT" />
+                                <label for="SELECT"> SELECT </label>
+                                <input type="radio" id="INSERT" name="type" value="INSERT" />
+                                <label for="INSERT"> INSERT </label>
+                                <input type="radio" id="UPDATE" name="type" value="UPDATE" checked />
+                                <label for="UPDATE"> UPDATE </label>
+                                <input type="radio" id="DELETE" name="type" value="DELETE" />
+                                <label for="DELETE"> DELETE </label>
+                            }
+                            else if (Model.Type.Equals("DELETE"))
+                            {
+                                <div class="switch-title">Select Type Of Query</div>
+                                <input type="radio" id="SELECT" name="type" value="SELECT" />
+                                <label for="SELECT"> SELECT </label>
+                                <input type="radio" id="INSERT" name="type" value="INSERT" />
+                                <label for="INSERT"> INSERT </label>
+                                <input type="radio" id="UPDATE" name="type" value="UPDATE" />
+                                <label for="UPDATE"> UPDATE </label>
+                                <input type="radio" id="DELETE" name="type" value="DELETE" checked />
+                                <label for="DELETE"> DELETE </label>
+                            }
+                        </div>
+                        <br />
+                        <input type="submit" value="Run Query" />
+                        @if (!string.IsNullOrWhiteSpace(Model.Msg))
+                        {
+                            <span>( @Model.Msg ) Rows Affected</span>
+                        }
+
+                    </form>
+                </div>
+            </div>
+
+            @if (string.IsNullOrWhiteSpace(Model.Error) && string.IsNullOrWhiteSpace(Model.Msg))
+            {
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> Result
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        @foreach (DataColumn col in Model.data.Columns)
+                                        {
+                                            <th>@col.ColumnName</th>
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (DataRow row in Model.data.Rows)
+                                    {
+                                        <tr>
+                                            @foreach (DataColumn col in Model.data.Columns)
+                                            {
+                                                <td>@row[col.ColumnName]</td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> Result
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="err">No Results to Display</tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fa fa-angle-up"></i>
+        </a>
+        <!-- Logout Modal-->
+        
+        <!-- Bootstrap core JavaScript-->
+        <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+        <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="~/Content/vendor/chart.js/Chart.min.js"></script>
+        <script src="~/Content/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="~/Content/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/Content/js/sb-admin.min.js"></script>
+        <!-- Custom scripts for this page-->
+        <script src="~/Content/js/sb-admin-datatables.min.js"></script>
+        <script src="~/Content/js/sb-admin-charts.min.js"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,230 @@
+﻿@model Envision.Models.CompanyView
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Envision</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/Content/css/main.css" />
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="~/Content/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .label {
+            border-radius: 5px !important;
+            font-family: Arial;
+            color: #ffffff !important;
+            font-size: 14px !important;
+            background: #808080 !important;
+            padding: 5px 10px 5px 10px !important;
+            text-decoration: none !important;
+        }
+
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+    </style>
+</head>
+<body>
+    @{
+        Random rand = new Random();
+        int i = rand.Next(1000) % 5 + 1;
+        string link = "../../Content/images/pic" + i.ToString() + ".jpg";
+    }
+    @Html.Partial("~/Views/Shared/AdminHeader.cshtml")
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="w3-row-padding w3-container" style="margin-top:100px;">
+                <button onclick="window.location.href = '/Admin/DeleteCompany?companyid=@Model.Id'"> Delete </button>
+                @if (!Model.Verified)
+                {
+                    <button onclick="window.location.href='/Admin/VerifyCompany?companyid=@Model.Id'"> Verify </button>
+                }
+            </div>
+            <div class="w3-container">
+                <header id="header" class="alt" style="background-image: url(@link)">
+                    <div class="inner">
+                        @{
+                            Dictionary<string, string> dict = new Dictionary<string, string>();
+                            dict["STP"] = "Startup";
+                            dict["NGO"] = "NGO";
+                            dict["GOV"] = "Goverment";
+                            dict["EST"] = "Establishment";
+                        }
+                        <h1>@Model.Name</h1>
+                        <h4>@dict[Model.CompanyType]</h4>
+                        @if (!string.IsNullOrWhiteSpace(Session["user_id"].ToString()) && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("CMP"))
+                        {
+                            <ul class="actions">
+                                <li><a href="/Company/Edit" class="button big w3-white">Edit Profile</a></li>
+                            </ul>
+                        }
+                    </div>
+                </header>
+
+                <!-- Wrapper -->
+                <div id="wrapper">
+
+                    <!-- Banner -->
+                    <section id="intro" class="main">
+                        <span class="icon fa-diamond major"></span>
+                        <h2>About Company</h2>
+                        <p style="max-width: 500px;margin: 0 auto;">@Model.About</p><br />
+                        @if (!string.IsNullOrWhiteSpace(Model.WebsiteURL))
+                        {
+                            string website = "http://" + Model.WebsiteURL;
+                            <ul class="actions">
+                                <li><a href="@website" class="button big">Learn More</a></li>
+                            </ul>
+                        }
+                    </section>
+
+
+                    <section id="cta" class="main special">
+                        <h2>Works In Industries</h2>
+                        <label>
+                            @foreach (var l in Model.CompanyIndustry)
+                            {
+                                <label class="label">@l</label>
+                            }
+                        </label>
+                    </section>
+
+                </div>
+            </div>
+            <div class="w3-margin-top">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fa fa-table"></i> Internships
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Internship In</th>
+                                        <th>Internship Locations</th>
+                                        <th>No. of Applicants</th>
+                                        <th>Posted On</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Internships)
+                                    {
+                                        <tr onclick="window.location.href='/Admin/Internship/@item.I_Id'" style="cursor:pointer">
+                                            <td>@item.InternshipIn</td>
+                                            <td>
+                                                @foreach (var l in item.Locations)
+                                                {
+                                                    <label class="label">@Html.DisplayFor(model => l)</label>
+                                                }
+                                            </td>
+                                            @{ 
+                                                var cd = ((DateTime)item.CreatedDate).ToShortDateString();
+                                            }
+                                            <td>@item.Applicants</td>
+                                            <td>@cd</td>
+
+                                        </tr>
+                                       }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header -->
+    
+    <script>
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13
+        });
+
+        var input = document.getElementById('pac-input');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        var marker = new google.maps.Marker({
+          map: map
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            return;
+          }
+
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+          }
+
+          // Set the position of the marker using the place ID and location.
+          marker.setPlace({
+            placeId: place.place_id,
+            location: place.geometry.location
+          });
+          marker.setVisible(true);
+          document.getElementById("cid").value = place.place_id;
+          document.getElementById("cname").value = place.name;
+
+          infowindowContent.children['place-name'].textContent = place.name;
+          infowindowContent.children['place-address'].textContent =
+              place.formatted_address;
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiHtRN0YZa-bM-k4qY31Uwe47YYhMtPiA&libraries=places&callback=initMap"
+            async defer></script>
+    <!-- Scripts -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="~/Content/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Content/js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="~/Content/js/sb-admin-datatables.min.js"></script>
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/skel.min.js"></script>
+    <script src="~/Content/js/util.js"></script>
+    <script src="~/Content/js/main.js"></script>
+
+</body>
+
+</html>

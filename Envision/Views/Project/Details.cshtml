@@ -1,0 +1,485 @@
+﻿@model Envision.Models.ProjectView
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Envision</title>
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+                .dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: #000;
+    padding: 14px 16px;
+    background-color: inherit;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #032042;
+    color:#ffffff;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #032042;
+    color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+        .box-img {
+            max-height: 600px;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: Raleway, Open Sans, Droid Sans, Roboto,arial, sans-serif;
+        }
+
+        .blurred-bg {
+            background-color:rgba(128, 128, 128,0.5);
+        }
+
+        .box {
+            width: 500px;
+            height: 300px;
+            border-radius: 5px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+            display: flex;
+            transition: box-shadow .3s ease;
+        }
+        .box .content {
+            margin: auto;
+        }
+
+        .box h1,.box h2,.box a,.box p {
+            color: white;
+            font-weight: 100;
+        }
+        .tinted h1, .tinted h2, .tinted a, .tinted p {
+            color: black;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .box h2 {
+            font-size: 14px;
+        }
+
+        .join-button {
+            outline: none;
+            height: 40px;
+            text-align: center;
+            width: 130px;
+            border-radius: 40px;
+            background: #fff;
+            border: 2px solid #032042;
+            color: #032042;
+            letter-spacing: 1px;
+            text-shadow: 0;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+.user-widget {
+  width: 250px;
+  background: transparent;
+  padding: 0px;
+  border-radius: 4px;  
+}
+
+.user-info {
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.user {
+  margin-top: 20px;
+  display: inline-block;
+  width: 150px;
+  color: white;
+  font-weight: bold;
+}
+
+.followers {
+  font-size: 10px;
+  display: inline-block;
+  width: 150px;
+  color: #eaeaea;
+}
+
+#menu {
+  width: 250px;
+  font-family: Open Sans;
+  color: #808080;
+  font-size: 14px;  
+}
+
+.image {
+  float: left;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  color: #DB6130;
+  background: white;
+  border-radius: 27px;
+  margin: 10px;
+  border: solid 3px #dedede;
+}
+
+.event-calendar {
+  font-size: 14px;
+  font-family: Open Sans;
+  overflow:hidden;
+  white-space: nowrap;
+}
+
+.event-list {
+  display: block;
+  list-style:none;
+  padding:0px;
+  border-right: 1px solid rgb(229, 229, 229);
+}
+
+.event {
+  text-decoration: none;
+}
+
+.PEN .event-container {
+  border-left: 4px solid #535050; /*grey*/
+}
+
+.ONG .event-container {
+  border-left: 4px solid #FDD835; /*yellow*/
+}
+
+.CMP .event-container {
+  border-left: 4px solid #36940a; /*green*/
+}
+
+.CNL .event-container {
+  border-left: 4px solid #F44336; /*red*/
+}
+
+.event-container {
+  color: rgb(171, 171, 171);
+  transition: all 0.2s ease;
+  background: rgb(253, 248, 228);
+  border-left: 3px solid;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.detail-container {
+  margin-left:10px;
+  display:inline-block;
+  vertical-align:top;
+  padding-top:3px;
+}
+
+.title {
+  text-transform:uppercase;
+  font-family:Oswald;
+  font-weight:400;
+  font-size:1.5em;
+  color:#8D6E63;
+}
+
+.description {
+  display:block;
+  font-size:0.9em;
+  color:#4DD0E1;
+}
+.form{
+            padding-bottom:10px;
+        }
+        .form label{
+            font-weight: 500;
+            font-size: 20px;
+        }
+        .form input[type="number"]{
+            width:20%;
+            height:30px;
+            border: 1px solid;
+            border-radius: 2px;
+            padding-left: 10px;
+        }
+        .form input[type="text"],.form input[type="email"] {
+            width:60%;
+            height:30px;
+            border: 1px solid;
+            border-radius: 2px;
+            padding-left: 10px;
+        }
+
+        .form input[type="number"]:checked,.form input[type="number"]:focus,.form input[type="number"]:active{
+            border: 1px solid #032042;
+        }
+        .form select{
+            min-width:200px;
+            border-radius: 2px;
+            height:30px;
+            border-radius: 2px;
+            padding-left: 10px;
+        }
+        .form input[type="submit"] {
+            background-color: #032042;
+            color: white;
+            border: none;
+            padding: 5px 30px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            opacity: 0.5;
+        }
+
+     </style>
+</head>
+<body >
+    @if (Session["user_type"].Equals("STD"))
+    {
+        @Html.Partial("~/Views/Shared/StudentHeader.cshtml")
+    }
+    else if (Session["user_type"].Equals("CMP"))
+    {
+        @Html.Partial("~/Views/Shared/CompanyHeader.cshtml")
+    }
+    else
+    {
+        @Html.Partial("~/Views/Shared/GuestHeader.cshtml")
+    }
+    
+    <div class="w3-container">
+        <div class="w3-row-padding">
+            <div class="" style="padding:0px;">
+                <div class="w3-display-container" style="padding:0px;">
+                    @if (Model.Pic != null)
+                    {
+                        string imageBase64 = Convert.ToBase64String(Model.Pic);
+                        string imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                        <img class="box-img" src="@imageSrc" alt="Avatar" style="width:100%" />
+                    }
+                    else
+                    {
+                        <img class="box-img" src="~/Content/images/chicken.jpg" style="width:100%" />
+                    }
+                    
+                    <div class="w3-display-middle">
+                        <div class="box blurred-bg tinted">
+                            <div class="content">
+                                <h1>@Model.Name</h1>
+                                <h2>By <a href="/Student/Details/@Model.CreatedById">@Model.CreatedByName</a></h2>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w3-row-padding w3-margin-top">
+                @{
+                    bool flag = Model.ProjectUsers.Select(c => c.UserId).ToList().Contains(Session["user_id"]);
+                }
+                @if (Session["user_type"].Equals("STD") && Session["user_id"].Equals(Model.CreatedById))
+                {
+                    <div style="margin:0 auto;width:50%;">
+                        <button class="join-button w3-hover-envision-blue" onclick="window.location.href='/Project/Joins/@Model.Id'">Applicants</button>
+                        <button class="join-button w3-hover-envision-blue" onclick="window.location.href='/Project/Users/@Model.Id'">Project Users</button>
+                        <button class="join-button w3-hover-envision-blue" onclick="window.location.href='/Project/Tasks/@Model.Id'">Manage Tasks</button>
+                        <button class="join-button w3-hover-envision-blue" onclick="document.getElementById('edit').style.display='block'">Edit Project</button>
+                    </div>
+                    <div id="edit" class="w3-modal">
+                        <div class="w3-modal-content" style="min-width:400px;margin:0 auto;padding-left:30px;padding-right:30px;">
+                            <header class="w3-container w3-envision-blue">
+                                <span onclick="document.getElementById('edit').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                            </header>
+                            <div class="w3-container">
+                                <form action="/Project/Edit" method="post" class="form" enctype="multipart/form-data">
+                                    <br />
+                                    <br />
+                                    <div>
+                                        <label>Project Pic</label><br />
+                                        <input type="file" name="pic" />
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <input type="hidden" name="id" value="@Model.Id" />
+
+                                    <div style="width:100%;">
+                                        <label for="projectoverview">Project Overview&nbsp;*</label><br />
+                                        <textarea name="projectoverview" id="projectoverview" rows="6" style="width:80%;">@Model.ProjectOverview</textarea>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div style="width:100%;">
+                                        <label for="projecthelp">Need Help In?&nbsp;*</label><br />
+                                        <textarea name="projecthelp" id="projecthelp" rows="6" style="width:80%;">@Model.ProjectHelp</textarea>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div style="width:100%;">
+                                        <label for="teamlooking">Looking for a Team that is&nbsp;*</label><br />
+                                        <textarea name="teamlooking" id="teamlooking" rows="6" style="width:80%;">@Model.ProjectOverview</textarea>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <input type="submit" value="Update" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (Session["user_type"].Equals("STD") && flag)
+                {
+                    <div style="margin:0 auto;width:0!important">
+                        <button class="join-button w3-hover-envision-blue" onclick="window.location.href='/Project/Tasks/@Model.Id'">Manage Tasks</button>
+                    </div>
+                    
+                }
+                else if (Session["user_type"].Equals("STD"))
+                {
+                    <div style="margin:0 auto;width:0!important">
+                        <button class="join-button w3-hover-envision-blue" onclick="window.location.href='/Project/Join?studentid=@Session["user_id"]&projectid=@Model.Id&status=IP'">Join Project</button>
+                    </div>
+                    
+                }
+                else if (Session["user_type"].Equals("GST"))
+                {
+                    <div style="margin:0 auto!important;width:0!important">
+                        <button class="join-button w3-hover-envision-blue" style="width:200px;" onclick="window.location.href='/Home/Login'">Login to Join Project</button>
+                    </div>
+                }
+        </div>
+        <div class="w3-row-padding w3-margin-top">
+            <div class="w3-twothird">
+                <div class="w3-margin-top w3-card-2 w3-white w3-text-black" style="padding: 30px 20%;text-align:center">
+                    <h1 style="font-weight:700">Project Overview</h1>
+                    <p style="text-align:left;">@Model.ProjectOverview</p>
+                </div>
+                <div class="w3-margin-top w3-card-2 w3-white w3-text-black" style="padding: 30px 20%;text-align:center">
+                    <h1 style="font-weight:700">Where we need help in</h1>
+                    <p style="text-align:left;">@Model.ProjectHelp</p>
+                </div>
+                <div class="w3-margin-top w3-card-2 w3-white w3-text-black" style="padding: 30px 20%;text-align:center">
+                    <h1 style="font-weight:700">What kind of team we are looking for</h1>
+                    <p style="text-align:left;">@Model.TeamLooking</p>
+                </div>
+            </div>
+
+            <div class="w3-third w3-margin-top">
+                <div class="w3-card-2" style="overflow-y: scroll;max-height:400px;">
+                    <ul class="user-widget w3-content">
+                        <h1 style="font-weight:700;margin:0 auto">Project Users</h1>
+                        @foreach(var item in Model.ProjectUsers)
+                        {
+                            <li class="user-info" id="menu" style="background:rgb(3,32,66);cursor:pointer" onclick="window.location.href='/Student/Details/@item.UserId'"> 
+                                <span style="overflow:hidden;object-fit:cover" >
+                                    @if (item.Pic == null)
+                                    {
+                                        <img src="~/Content/images/chicken.jpg" class="image"/>
+                                    }
+                                    else
+                                    {
+                                        string imageBase64 = Convert.ToBase64String(item.Pic);
+                                        string imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                                        <img src="@imageSrc" class="image" />
+                                    }
+                                </span>
+                                <span class="user">
+                                    @Html.DisplayFor(model => item.UserName)
+                                </span>
+                                <span class="followers" style="letter-spacing:1px;top:30px;">
+                                    @Html.DisplayFor(model => item.Role)
+                                </span>
+                            </li>
+                        }
+                     </ul>
+                </div>
+                <div class="w3-card-2 w3-margin-top" style="max-height:400px;overflow-y:scroll">
+                    <div class="event-calendar">
+                        <ul class="event-list">
+                            <h1 style="font-weight:700;margin-left:80px;">Project Tasks</h1>
+                            @{ 
+                                Dictionary<string, string> dstatus = new Dictionary<string, string>();
+                                dstatus["PEN"] = "Pending";
+                                dstatus["CNL"] = "Cancelled";
+                                dstatus["ONG"] = "On Going";
+                                dstatus["CMP"] = "Completed";
+                            }
+                            @foreach (var item in Model.ProjectTasks)
+                            {
+                                string status = dstatus[item.Status];
+                                <li class="event @item.Status">
+                                    <div class="event-container">
+                                        <span class="detail-container">
+                                            <span class="title">@item.Heading</span>
+                                            <span class="description">@status</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div> 
+                   
+                </div>       
+             </div>
+        </div>
+
+    </div>
+    
+
+</body>  
+</html>

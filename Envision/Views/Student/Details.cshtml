@@ -1,0 +1,876 @@
+﻿@model Envision.Models.StudentView
+<!DOCTYPE html>
+<html>
+<head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .w3-text-envision,.w3-hover-text-envision:hover{color:#032042!important}
+                .dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: #000;
+    padding: 14px 16px;
+    background-color: inherit;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #032042;
+    color:#ffffff;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #032042;
+    color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+        .skills { 
+            width: 100%;
+	        background-color: #E0E0E0;
+	        border-radius:10px;
+	        position: relative;
+            color: #333; /* position the header relative to the div */
+        }
+
+        .skills ul {
+	        padding: 20px 10px 10px 10px;
+	        margin: 0;
+        }        
+        
+        .skills .header {
+	        margin: 0;
+	        padding: 0 5px;
+	        font-size: 20px; 
+	        position: absolute;
+	        top: -20px;
+	        left: 30px;
+	        background: white;
+	        border-bottom-right-radius: 7px;
+	        border-bottom-left-radius: 7px;
+        }
+
+        .skills li { 
+            font-size: 16px; 
+            margin: 5px 5px;                                             
+	        display: inline-block;
+	        padding: 4px 10px;
+	        border: 1px solid #B8B8B8;
+	        border-radius: 5px; 
+	        background-color: #EBEBEB; 
+            background-size: 16px;
+        }
+        .sticker-tiles {
+            list-style: none;
+            margin: 0;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .sticker-tiles li {
+            margin: 10px;
+        }
+
+        .sticker-tiles li:before,
+        .sticker-tiles li:after {
+            bottom: 29px;
+            box-shadow: 0 30px 4px rgba(0, 0, 0, 0.5);
+            content: "";
+            height: 30px;
+            position: absolute;
+            width: 48%;
+            z-index: -1;
+        }
+
+        .sticker-tiles li div {
+            background: #f8f8f8;
+            color: #032042;
+            display: block;
+            font: 14px sans-serif;
+            line-height: 19px;
+            text-decoration: none;
+        }
+        .fa-button{
+            background: transparent;
+            cursor: pointer;
+            border: none;
+        }
+        .form{
+            padding-bottom:10px;
+        }
+        .form label{
+            font-weight: 500;
+            font-size: 20px;
+        }
+        .form input[type="number"]{
+            width:20%;
+            height:30px;
+            border: 1px solid;
+            border-radius: 2px;
+            padding-left: 10px;
+        }
+        .form input[type="text"],.form input[type="email"] {
+            width:60%;
+            height:30px;
+            border: 1px solid;
+            border-radius: 2px;
+            padding-left: 10px;
+        }
+
+        .form input[type="number"]:checked,.form input[type="number"]:focus,.form input[type="number"]:active{
+            border: 1px solid #032042;
+        }
+        .form select{
+            min-width:200px;
+            border-radius: 2px;
+            height:30px;
+            border-radius: 2px;
+            padding-left: 10px;
+        }
+        .form input[type="submit"] {
+            background-color: #032042;
+            color: white;
+            border: none;
+            padding: 5px 30px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            opacity: 0.5;
+        }
+        #map-education,#map-volunteer,#map-volunteer {
+             width:100%;
+         }
+
+         .controls-education,.controls-work,.controls-volunteer {
+             background-color: #fff;
+             border-radius: 2px;
+             border: 1px solid transparent;
+             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+             box-sizing: border-box;
+             font-family: Roboto;
+             font-size: 15px;
+             font-weight: 300;
+             height: 29px;
+             margin-left: 17px;
+             margin-top: 10px;
+             outline: none;
+             padding: 0 11px 0 13px;
+             text-overflow: ellipsis;
+             width: 400px;
+         }
+
+             .controls-education:focus,.controls-volunteer:focus,.controls-volunteer:focus {
+                 border-color: #4d90fe;
+             }
+
+         .title {
+             font-weight: bold;
+         }
+
+         #infowindow-content-education,#infowindow-content-work,#infowindow-content-volunteer {
+             display: none;
+         }
+
+         #map-work #infowindow-content-work {
+             display: inline;
+         }
+         #map-education #infowindow-content-education {
+             display: inline;
+         }
+         #map-volunteer #infowindow-content-volunteer {
+             display: inline;
+         }
+    </style>
+</head>
+
+<body class="w3-light-grey">
+    
+    @if (Session["user_type"].Equals("STD"))
+    {
+        @Html.Partial("~/Views/Shared/StudentHeader.cshtml")
+    }
+    else if (Session["user_type"].Equals("CMP"))
+    {
+        @Html.Partial("~/Views/Shared/CompanyHeader.cshtml")
+    }
+    else
+    {
+        @Html.Partial("~/Views/Shared/GuestHeader.cshtml")
+    }
+
+    @if (!string.IsNullOrWhiteSpace(ViewBag.ResError))
+    {
+        <div class="w3-content" style="margin-top:100px;">
+            <span class="w3-text-red">@ViewBag.ResError</span>
+        </div>
+    }
+    
+
+    @if (string.IsNullOrWhiteSpace(ViewBag.ResError) && Model != null)
+    {
+    <!-- Page Container -->
+    <div class="w3-content" style="max-width:1400px;margin-top:100px;">
+
+        <!-- The Grid -->
+        <div class="w3-row-padding">
+
+            <!-- Left Column -->
+            <div class="w3-third">
+
+                <div class="w3-white w3-text-grey w3-card-4">
+                    <div class="w3-display-container">
+                        
+                        @if (Model.ProfilePic == null)
+                        {
+                            <img src="~/Content/images/chicken.jpg" style="width:100%" />
+                        }
+                        else
+                        {
+                            string imageBase64 = Convert.ToBase64String(Model.ProfilePic);
+                            string imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                            <img src="@imageSrc" alt="Avatar" style="width:100%" />
+                        }
+                        <div class="w3-display-bottomleft w3-container w3-text-black" style="background-color:rgba(255,255,255,0.5);width:100%;">
+                            <h2 style="opacity:1">@Model.FirstName @Model.LastName
+                            @if (Session["user_id"] != null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                            {
+                                <button class="fa-button w3-margin-left" style="float:right;" onclick="document.getElementById('editprofile').style.display='block'"><i class="fa fa-pencil"></i></button>
+                            }
+                            </h2>
+                        </div>
+                            @if (Session["user_id"] != null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                            {
+                                <div id="editprofile" class="w3-modal">
+                                    <div class="w3-modal-content" style="min-width:400px;margin:0 auto;padding-left:30px;padding-right:30px;">
+                                        <header class="w3-container w3-envision-blue">
+                                            <span onclick="document.getElementById('editprofile').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                        </header>
+                                        <div class="w3-container">
+                                            <form action="/Student/Edit" method="post" class="form" enctype="multipart/form-data">
+                                                <br />
+                                                <br />
+                                                <input type="hidden" name="id" value="@Model.Id" />
+                                                <div>
+                                                    <div style="width:50%;float:left;">
+                                                        <label for="fname">First Name&nbsp;*</label><br />
+                                                        <input type="text" id="fname" name="fname" value="@Model.FirstName" required /><br />
+                                                    </div>
+                                                    <div style="width:50%;float:right;">
+                                                        <label for="lname">Last Name&nbsp;*</label><br />
+                                                        <input type="text" id="lname" name="lname" required value="@Model.LastName" /><br />
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <br />
+                                                <div class="w3-margin-top">
+                                                    <label for="email">Email&nbsp;*</label><br />
+                                                    <input type="email" id="email" name="email" required value="@Model.Email"><br />
+                                                </div>
+                                                <div class="w3-margin-top">
+                                                    <div style="width:50%;float:left;">
+                                                        <label for="dob">Date Of Birth&nbsp;*</label><br />
+                                                        @{ 
+                                                            var date = Convert.ToDateTime(Model.DOB).ToString("yyyy-MM-dd");
+                                                        }
+                                                        <input type="date" id="dob" name="dob" required value="@date"/><br />
+                                                    </div>
+                                                    <div style="width:50%;float:right;">
+                                                        <label for="mobile">Mobile Number</label><br />
+                                                        <input type="number" id="mobile" name="mobile" style="width:150px!important;" value="@Model.Mobile" /><br />
+                                                    </div>
+                                                </div>
+                                                <div style="width:50%" class="w3-margin-top">
+                                                    <label for="gender">Gender&nbsp;*</label><br />
+                                                    @if (Model.Gender == "M")
+                                                    {
+                                                        <input type="radio" name="gender" value="M" checked /> @:Male
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="radio" name="gender" value="M" /> @:Male
+                                                    }
+                                                    @if (Model.Gender == "F")
+                                                    {
+                                                        <input type="radio" name="gender" value="F" checked /> @:Female
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="radio" name="gender" value="F" /> @:Female
+                                                    }
+                                                    @if (Model.Gender == "O")
+                                                    {
+                                                        <input type="radio" name="gender" value="O" checked /> @:Other
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="radio" name="gender" value="O" /> @:Other
+                                                    }
+                                                </div>
+
+                                                <div class="w3-margin-top">
+                                                    <label for="profilepic">Profile Pic&nbsp;</label><br />
+                                                    <input type="file" name="profilepic" id="profilepic" style="width: 80%;" /><br />
+                                                </div>
+                                                <br />
+                                                <br />
+                                                <input type="submit" value="Update" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                    </div>
+                    <div class="w3-container">
+                        <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-envision"></i>@Html.DisplayFor(model => Model.Email)</p>
+                        <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-envision"></i>@Html.DisplayFor(model => Model.Mobile)</p>
+                        @{
+                            var sd = ((DateTime)Model.DOB).ToShortDateString();
+                        }
+                        <p><i class="fa fa-calendar-o fa-fw w3-margin-right w3-large w3-text-envision"></i>@sd</p>
+                        <hr>
+
+                        
+                            <div class="skills">
+                                <h2 class="header">Skills Overview
+                                    @if (Session["user_id"] != null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                                    {
+                                        <button class="fa-button w3-margin-left" onclick="document.getElementById('skill').style.display='block'"><i class="fa fa-plus"></i></button>
+                                    }
+                                </h2>
+                                    @if (Session["user_id"] != null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                                    {
+                                        <div id="skill" class="w3-modal">
+                                            <div class="w3-modal-content"  style="min-width:400px;margin:0 auto;padding-left:30px;padding-right:30px;">
+                                                <header class="w3-container w3-envision-blue">
+                                                    <span onclick="document.getElementById('skill').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                                                </header>
+                                                <div class="w3-container">
+                                                    <form action="/Extra/Skill" method="post" class="form">
+                                                        <br />
+                                                        <br />
+                                                        <label style="padding-top:30px;">Skill</label><br />
+                                                        <select name="skill">
+                                                            @foreach(var item in ViewBag.Skills)
+                                                            {
+                                                                <option value="@item.Id" >@item.Name</option>
+                                                            }
+                                                        </select>
+                                                        <br />
+                                                        <br />
+                                                        <label style="padding-top:30px;">Rate this skill of yours out of 5</label><br />
+                                                        <input type="number" name="value"/>&nbsp;/5
+                                                        <br />
+                                                        <br />
+                                                        <input type="submit" value="Update" />
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                <ul>
+                                    @foreach( Envision.Models.StudentView.SkilledIn s in Model.SkilledIns)
+                                    {
+                                        var value = Convert.ToInt16(s.Value);
+                                        <li>@s.Name &nbsp;@value/5
+                                            @if (Session["user_id"] != null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                                            {
+                                                <button class="fa-button w3-margin-left" onclick="window.location.href='/Extra/Skill?id=@s.Id'"><i class="fa fa-trash-o"></i></button>
+                                            }
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        <br>
+                    </div>
+                </div><br>
+
+                <!-- End Left Column -->
+            </div>
+
+            <!-- Right Column -->
+            <div class="w3-twothird">
+
+                    <div class="w3-container w3-card w3-white w3-margin-bottom">
+                        <h2 class="w3-text-grey w3-padding"> 
+                            Education
+                            @if (Session["user_id"]!=null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                            {
+                                <button class="fa-button w3-margin-left" onclick="document.getElementById('education').style.display='block'"><i class="fa fa-plus"></i></button>
+                            }
+                        </h2>
+                        @if (Session["user_id"] != null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                        {
+                            <div id="education" class="w3-modal">
+                                <div class="w3-modal-content" style="min-width:400px;margin:0 auto;padding-left:30px;padding-right:30px;">
+                                    <header class="w3-container w3-envision-blue">
+                                        <span onclick="document.getElementById('education').style.display='none'"
+                                              class="w3-button w3-display-topright">&times;</span>
+                                    </header>
+                                    <div class="w3-container">
+                                        <form action="/Extra/Education" method="post" class="form">
+                                            <br />
+                                            <br />
+                                            <div>
+                                                <label for="pac-input-education">College Name&nbsp;*</label><br />
+                                                <input id="pac-input-education" class="controls-education" type="text" placeholder="Enter College Name" name="college">
+                                                <input type="hidden" name="cid-education" id="cid-education" />
+                                                <input type="hidden" name="cname-education" id="cname-education" />
+                                                <div id="map-education" style="width:80%;height:200px;"></div>
+                                                <div id="infowindow-content-education">
+                                                    <span id="place-name-education" class="title"></span><br>
+                                                    <span id="place-address-education"></span>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <br />
+                                            <label style="padding-top:30px;">Degree</label><br />
+                                            <select name="degree">
+                                                @foreach (var item in ViewBag.Degree)
+                                                {
+                                                    <option value="@item.Id">@item.Name</option>
+                                                }
+                                            </select>
+                                            <br />
+                                            <br />
+                                            <label style="padding-top:30px;">Graduation Year</label><br />
+                                            <input type="number" name="graduation" />&nbsp;(Leave empty if the degree is on going)
+                                            <br />
+                                            <br />
+                                            <input type="submit" value="Update" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <ul class="sticker-tiles">
+                            @foreach (Envision.Models.StudentView.Studied s in Model.Studieds)
+                            {
+                                <li>
+                                    <div class="w3-container">
+                                        <h5><b>@s.Name</b>
+                                            @if (Session["user_id"]!=null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                                            {
+                                                var graduation = s.GraduationYear == null ? "null" : s.GraduationYear.ToString();
+                                                <button class="fa-button w3-margin-left" onclick="window.location.href='/Extra/Education?name=@s.Name&degree=@s.Degree&graduation=@graduation'"><i class="fa fa-trash-o"></i></button>
+                                            }
+                                        </h5>
+                                        <h6>@s.Degree</h6>
+                                        @if (!string.IsNullOrWhiteSpace(s.GraduationYear.ToString()))
+                                            {
+                                                var g = Convert.ToInt32(s.GraduationYear);
+                                            <h6 class="w3-text-envision"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Graduated On:&nbsp;@g</h6>
+                                        }
+                                        else
+                                        {
+                                            <h6>Graduated On:&nbsp;<span class="w3-tag w3-envision-blue w3-round">Current</span></h6>
+                                        }
+                                    </div>
+                                    <hr/>
+                                </li>
+                                
+                            }
+                        </ul>
+                    </div>
+
+                <div class="w3-container w3-card w3-white w3-margin-bottom">
+                    <h2 class="w3-text-grey w3-padding">
+                        Work Experience
+                        @if (Session["user_id"]!=null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                        {
+                            <button class="fa-button w3-margin-left" onclick="document.getElementById('work').style.display='block'"><i class="fa fa-plus"></i></button>
+                        }
+                    </h2>
+                    @if (Session["user_id"] != null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                    {
+                        <div id="work" class="w3-modal">
+                            <div class="w3-modal-content" style="min-width:400px;margin:0 auto;padding-left:30px;padding-right:30px;">
+                                <header class="w3-container w3-envision-blue">
+                                    <span onclick="document.getElementById('work').style.display='none'"
+                                          class="w3-button w3-display-topright">&times;</span>
+                                </header>
+                                <div class="w3-container">
+                                    <form action="/Extra/Work" method="post" class="form">
+                                        <br />
+                                        <br />
+                                        <div>
+                                            <label for="pac-input-work">Location where you worked&nbsp;*</label><br />
+                                            <input id="pac-input-work" class="controls-work" type="text" placeholder="Enter a name" name="work">
+                                            <input type="hidden" name="cid-work" id="cid-work" />
+                                            <input type="hidden" name="cname-work" id="cname-work" />
+                                            <div id="map-work" style="width:80%;height:200px;"></div>
+                                            <div id="infowindow-content-work">
+                                                <span id="place-name-work" class="title"></span><br>
+                                                <span id="place-address-work"></span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div>
+                                            <label>Designation</label><br />
+                                            <input type="text" name="designation" />
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div>
+                                            <div style="width:50%;float:left">
+                                                <label>Start Date</label><br />
+                                                <input type="date" name="sdate" />
+                                            </div>
+                                            <div style="width:50%;float:right">
+                                                <label>End Date</label><br />
+                                                <input type="date" name="edate" />
+                                                <p style="margin:0px;padding:0px;">(Leave blank if the work is on going)</p>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div style="width:100%;">
+                                            <input type="submit" value="Update" style="margin-top:50px;"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <ul class="sticker-tiles">
+                        @foreach (Envision.Models.StudentView.WorkExperience w in Model.WorkExperiences)
+                        {
+                            <li>
+                                <div class="w3-container">
+                                    <h5>
+                                        <b>@w.Name</b>
+                                        @if (Session["user_id"]!=null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                                        {
+                                            var startdate = ((DateTime)w.StartDate).ToShortDateString();
+                                            <button class="fa-button w3-margin-left" onclick="window.location.href='/Extra/Work?name=@w.Name&designation=@w.Designation&startdate=@startdate'"><i class="fa fa-trash-o"></i></button>
+                                        }
+                                    </h5>
+                                    <h6>@w.Designation</h6>
+                                    @{
+
+                                        if (w.EndDate != null)
+                                        {
+                                            var startdate = ((DateTime)w.StartDate).ToShortDateString();
+                                            var months = ((DateTime)w.EndDate).Month - ((DateTime)w.StartDate).Month + 12 * (((DateTime)w.EndDate).Year - ((DateTime)w.StartDate).Year);
+                                            var enddate = ((DateTime)w.EndDate).ToShortDateString();
+                                            <h6 class="w3-text-envision"><i class="fa fa-calendar fa-fw w3-margin-right"></i>@startdate - @enddate</h6>
+                                            <h6>@months Months</h6>
+                                        }
+                                        else
+                                        {
+                                            var startdate = ((DateTime)w.StartDate).ToShortDateString();
+                                            <h6 class="w3-text-envision"><i class="fa fa-calendar fa-fw w3-margin-right"></i>@startdate - <span class="w3-tag w3-envision-blue w3-round">Current</span></h6>
+                                        }
+                                    }
+                                </div>
+                                <hr />
+                            </li>
+
+                        }
+                    </ul>
+                </div>
+
+                <div class="w3-container w3-card w3-white w3-margin-bottom">
+                    <h2 class="w3-text-grey w3-padding">
+                        Volunteer Work
+                        @if (Session["user_id"]!=null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                        {
+                            <button class="fa-button w3-margin-left" onclick="document.getElementById('volunteer').style.display='block'"><i class="fa fa-plus"></i></button>
+                        }
+                    </h2>
+                    @if (Session["user_id"] != null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                    {
+                        <div id="volunteer" class="w3-modal">
+                            <div class="w3-modal-content" style="min-width:400px;margin:0 auto;padding-left:30px;padding-right:30px;">
+                                <header class="w3-container w3-envision-blue">
+                                    <span onclick="document.getElementById('volunteer').style.display='none'"
+                                          class="w3-button w3-display-topright">&times;</span>
+                                </header>
+                                <div class="w3-container">
+                                    <form action="/Extra/Volunteer" method="post" class="form">
+                                        <br />
+                                        <br />
+                                        <div>
+                                            <label for="pac-input-volunteer">Location where you volunteered&nbsp;*</label><br />
+                                            <input id="pac-input-volunteer" class="controls-volunteer" type="text" placeholder="Enter a name" name="volunteer">
+                                            <input type="hidden" name="cid-volunteer" id="cid-volunteer" />
+                                            <input type="hidden" name="cname-volunteer" id="cname-volunteer" />
+                                            <div id="map-volunteer" style="width:80%;height:200px;"></div>
+                                            <div id="infowindow-content-volunteer">
+                                                <span id="place-name-volunteer" class="title"></span><br>
+                                                <span id="place-address-volunteer"></span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div>
+                                            <label>Topic</label><br />
+                                            <input type="text" name="topic"/>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div>
+                                            <div style="width:50%;float:left">
+                                                <label>Start Date</label><br/>
+                                                <input type="date" name="sdate" />
+                                            </div>
+                                            <div style="width:50%;float:right">
+                                                <label>End Date</label><br/>
+                                                <input type="date" name="edate" />
+                                                <p style="margin:0px;padding:0px;">(Leave blank if the work is on going)</p>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <input type="submit" value="Update" style="margin-top:50px;" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <ul class="sticker-tiles">
+                        @foreach (Envision.Models.StudentView.VolunteerWork v in Model.VolunteerWorks)
+                        {
+                            <li>
+                                <div class="w3-container">
+                                    <h5>
+                                        <b>@v.Name</b>
+                                        @if (Session["user_id"]!=null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                                        {
+                                            var sdate = ((DateTime)v.StartDate).ToShortDateString();
+                                            <button class="fa-button w3-margin-left" onclick="window.location.href='/Extra/Volunteer?name=@v.Name&topic=@v.Topic&startdate=@sdate'"><i class="fa fa-trash-o"></i></button>
+                                        }
+                                    </h5>
+                                    <h6>@v.Topic</h6>
+                                    @{
+                                        var startdate = ((DateTime)v.StartDate).ToShortDateString();
+                                        if (v.EndDate != null)
+                                        {
+                                            var months = ((DateTime)v.EndDate).Month - ((DateTime)v.StartDate).Month + 12 * (((DateTime)v.EndDate).Year - ((DateTime)v.StartDate).Year);
+                                            var enddate = ((DateTime)v.EndDate).ToShortDateString();
+                                            <h6 class="w3-text-envision"><i class="fa fa-calendar fa-fw w3-margin-right"></i>@startdate - @enddate</h6>
+                                            <h6>@months Months</h6>
+                                        }
+                                        else
+                                        {
+                                            <h6 class="w3-text-envision"><i class="fa fa-calendar fa-fw w3-margin-right"></i>@startdate - <span class="w3-tag w3-envision-blue w3-round">Current</span></h6>
+                                        }
+                                    }
+                                </div>
+                                <hr />
+                            </li>
+
+                        }
+                    </ul>
+                </div>
+                
+
+                <!-- End Right Column -->
+            </div>
+
+            <!-- End Grid -->
+        </div>
+
+        <!-- End Page Container -->
+    </div>
+    }
+    <script>
+
+      function initMap() {
+        var mapeducation = new google.maps.Map(document.getElementById('map-education'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13
+        });
+        var mapwork = new google.maps.Map(document.getElementById('map-work'), {
+            center: { lat: -33.8688, lng: 151.2195 },
+            zoom: 13
+        });
+        var mapvolunteer = new google.maps.Map(document.getElementById('map-volunteer'), {
+            center: { lat: -33.8688, lng: 151.2195 },
+            zoom: 13
+        });
+
+
+        var inputeducation = document.getElementById('pac-input-education');
+        var inputwork = document.getElementById('pac-input-work');
+        var inputvolunteer = document.getElementById('pac-input-volunteer');
+
+
+        var autocompleteeducation = new google.maps.places.Autocomplete(inputeducation);
+        autocompleteeducation.bindTo('bounds', mapeducation);
+        var autocompletework = new google.maps.places.Autocomplete(inputwork);
+        autocompletework.bindTo('bounds', mapwork);
+        var autocompletevolunteer = new google.maps.places.Autocomplete(inputvolunteer);
+        autocompletevolunteer.bindTo('bounds', mapvolunteer);
+
+
+
+        var infowindoweducation = new google.maps.InfoWindow();
+        var infowindowContenteducation = document.getElementById('infowindow-content-education');
+        infowindoweducation.setContent(infowindowContenteducation);//
+        var infowindowwork = new google.maps.InfoWindow();
+        var infowindowContentwork = document.getElementById('infowindow-content-work');
+        infowindowwork.setContent(infowindowContentwork);//
+        var infowindowvolunteer = new google.maps.InfoWindow();
+        var infowindowContentvolunteer = document.getElementById('infowindow-content-volunteer');
+        infowindowvolunteer.setContent(infowindowContentvolunteer);
+
+
+        var markereducation = new google.maps.Marker({
+          map: mapeducation
+        });
+        var markerwork = new google.maps.Marker({
+            map: mapwork
+        });
+        var markervolunteer = new google.maps.Marker({
+            map: mapvolunteer
+        });
+
+
+        markereducation.addListener('click', function() {
+          infowindoweducation.open(mapeducation, markereducation);
+        });
+        markerwork.addListener('click', function () {
+            infowindowwork.open(mapwork, markerwork);
+        });
+        markervolunteer.addListener('click', function () {
+            infowindowvolunteer.open(mapvolunteer, markervolunteer);
+        });
+
+        autocompleteeducation.addListener('place_changed', function() {
+          infowindoweducation.close();
+          var place = autocompleteeducation.getPlace();
+          if (!place.geometry) {
+            return;
+          }
+
+          if (place.geometry.viewport) {
+            mapeducation.fitBounds(place.geometry.viewport);
+          }
+          else {
+            mapeducation.setCenter(place.geometry.location);
+            mapeducation.setZoom(17);
+          }
+
+          // Set the position of the marker using the place ID and location.
+          markereducation.setPlace({
+            placeId: place.place_id,
+            location: place.geometry.location
+          });
+          markereducation.setVisible(true);
+          document.getElementById("cid-education").value = place.place_id;
+          document.getElementById("cname-education").value = place.name;
+
+          infowindowContenteducation.children['place-name-education'].textContent = place.name;
+          infowindowContenteducation.children['place-address-education'].textContent = place.formatted_address;
+          infowindoweducation.open(mapeducation, markereducation);
+        });
+        autocompletework.addListener('place_changed', function () {
+            infowindowwork.close();
+            var place = autocompletework.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+            if (place.geometry.viewport) {
+                mapwork.fitBounds(place.geometry.viewport);
+            }
+            else {
+                mapwork.setCenter(place.geometry.location);
+                mapwork.setZoom(17);
+            }
+
+            // Set the position of the marker using the place ID and location.
+            markerwork.setPlace({
+                placeId: place.place_id,
+                location: place.geometry.location
+            });
+            markerwork.setVisible(true);
+            document.getElementById("cid-work").value = place.place_id;
+            document.getElementById("cname-work").value = place.name;
+
+            infowindowContentwork.children['place-name-work'].textContent = place.name;
+            infowindowContentwork.children['place-address-work'].textContent = place.formatted_address;
+            infowindowwork.open(mapwork, markerwork);
+        });
+
+        autocompletevolunteer.addListener('place_changed', function () {
+            infowindowvolunteer.close();
+            var place = autocompletevolunteer.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+            if (place.geometry.viewport) {
+                mapvolunteer.fitBounds(place.geometry.viewport);
+            }
+            else {
+                mapvolunteer.setCenter(place.geometry.location);
+                mapvolunteer.setZoom(17);
+            }
+
+            // Set the position of the marker using the place ID and location.
+            markervolunteer.setPlace({
+                placeId: place.place_id,
+                location: place.geometry.location
+            });
+            markervolunteer.setVisible(true);
+            document.getElementById("cid-volunteer").value = place.place_id;
+            document.getElementById("cname-volunteer").value = place.name;
+
+            infowindowContentvolunteer.children['place-name-volunteer'].textContent = place.name;
+            infowindowContentvolunteer.children['place-address-volunteer'].textContent = place.formatted_address;
+            infowindowvolunteer.open(mapvolunteer, markervolunteer);
+        });
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiHtRN0YZa-bM-k4qY31Uwe47YYhMtPiA&libraries=places&callback=initMap"
+            async defer></script>
+</body>
+</html>

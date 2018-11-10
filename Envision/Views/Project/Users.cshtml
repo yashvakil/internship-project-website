@@ -1,0 +1,206 @@
+﻿@model Envision.Models.ProjectView
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Envision</title>
+    <!-- Bootstrap core CSS-->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="~/Content/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <style>
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: #000;
+                padding: 14px 16px;
+                background-color: inherit;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #032042;
+                color: #ffffff;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #032042;
+                    color: #fff;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        .AP {
+            background: #d4edda;
+        }
+
+        .ST {
+            background: #FCFFB3;
+        }
+
+        .DN {
+            background: #f8d7da;
+        }
+
+        .button {
+            outline: none;
+            height: 30px;
+            text-align: center;
+            border-radius: 40px;
+            background: #fff;
+            padding-left: 25px !important;
+            padding-right: 25px !important;
+            border: 2px solid #1ECD97;
+            color: #1ECD97;
+            letter-spacing: 1px;
+            text-shadow: 0;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            -webkit-transition: all 0.25s ease;
+            transition: all 0.25s ease;
+        }
+
+            .button:hover {
+                color: white;
+                background: #1ECD97;
+            }
+
+            .button:active {
+                letter-spacing: 2px;
+            }
+
+        .w3-margin-left {
+            margin-left: 40px !important;
+        }
+    </style>
+</head>
+<body>
+    @if (Session["user_type"].Equals("STD"))
+    {
+        @Html.Partial("~/Views/Shared/StudentHeader.cshtml")
+    }
+    else if (Session["user_type"].Equals("CMP"))
+    {
+        @Html.Partial("~/Views/Shared/CompanyHeader.cshtml")
+    }
+    else
+    {
+        @Html.Partial("~/Views/Shared/GuestHeader.cshtml")
+    }
+
+    <div class="container-fluid" style="margin-top: 100px;max-width:95%;">
+
+        <!-- Example DataTables Card-->
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fa fa-table"></i> Project Users
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Current Role</th>
+                                <th>Action</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            @foreach (var item in Model.ProjectUsers)
+                            {
+                               <tr>
+                                   <td>@item.UserName</td>
+                                   <td>@item.Role</td>
+                                   <td><i class="fa fa-trash-o" onclick="window.location.href='/Project/DeleteApprove?userid=@item.UserId&projectid=@Model.Id'"></i></td>
+                                   <td>
+                                       <form action="/Project/JoinApprove" method="post">
+                                           <input type="hidden" name="studentid" value="@item.UserId" />
+                                           <input type="hidden" name="projectid" value="@Model.Id" />
+                                           <select style="min-width:100px;margin-right:20px;height:30px;border-radius:3px;" name="role">
+                                               @foreach (var l in ViewBag.Roles)
+                                               {
+                                                   <option value="@l.Id">@l.Name</option>
+                                               }
+                                           </select>
+                                           <input type="submit" class="button" value="Update">
+                                       </form>
+
+                                   </td>
+                               </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="~/Content/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Content/js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="~/Content/js/sb-admin-datatables.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6e6e51e71b2149d6b2faa3b3dcff6fc1" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="EnvisionModel.Applied" Width="1.5" PointX="6" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.CategoriesList" Width="1.5" PointX="0.625" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.Company" Width="1.5" PointX="1.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.CompanyIndustry" Width="1.5" PointX="10.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.DegreeList" Width="1.5" PointX="3.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.IndustryList" Width="1.5" PointX="6.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.Internship" Width="1.5" PointX="3.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.InternshipLocation" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.InternshipPerk" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.InternshipSkill" Width="1.5" PointX="9" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.LocationsList" Width="1.5" PointX="3.75" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.PerksList" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.Project" Width="1.5" PointX="3" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.ProjectUser" Width="1.5" PointX="8.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.SkilledIn" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.SkillsList" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.Student" Width="1.5" PointX="0.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.Studied" Width="1.5" PointX="6" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.TasksList" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.VolunteerWork" Width="1.5" PointX="3" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.WorkExperience" Width="1.5" PointX="3" PointY="36.5" IsExpanded="true" />
+        <AssociationConnector Association="EnvisionModel.FK_IIdApplied" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_SIdApplied" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_InternshipIn" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_CId" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_CIdCompanyIndustry" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_IIdCompanyIndustry" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_DegreeStudied" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_IIdInternshipLocations" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_IIdInternshipPerks" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_IIdInternshipSkills" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_LIdInternshipLocations" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_PIdInternshipPerks" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_SIdInternshipSkills" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_CreatedByProject" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_PIdProjectUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_UIdProjectUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_SIdSkilledIn" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_UIdSkilledIn" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_SIdStudied" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_SIdVolunteerWork" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_SIdWorkExperience" ManuallyRouted="false" />
+        <AssociationConnector Association="EnvisionModel.FK_CategoryProject" />
+        <EntityTypeShape EntityType="EnvisionModel.RoleList" Width="1.5" PointX="9.625" PointY="3.875" />
+        <AssociationConnector Association="EnvisionModel.FK_RIdProjectUsers" />
+        <EntityTypeShape EntityType="EnvisionModel.Join" Width="1.5" PointX="5.25" PointY="23.875" />
+        <AssociationConnector Association="EnvisionModel.FK_IIdJoin" />
+        <AssociationConnector Association="EnvisionModel.FK_SIdJoin" />
+        <EntityTypeShape EntityType="EnvisionModel.Log" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EnvisionModel.ProjectTask" Width="1.5" PointX="5.25" PointY="27.25" />
+        <AssociationConnector Association="EnvisionModel.FK_PIdProjectTasks" />
+        <AssociationConnector Association="EnvisionModel.FK_TIdProjectTasks" />
+        <EntityTypeShape EntityType="EnvisionModel.TasksAssigned" Width="1.5" PointX="10.5" PointY="23.25" />
+        <AssociationConnector Association="EnvisionModel.FK_PTIdTasksAssigned" />
+        <AssociationConnector Association="EnvisionModel.FK_PUIdTasksAssigned" />
+        <EntityTypeShape EntityType="EnvisionModel.Contact" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="EnvisionModel.AdminQuery" Width="1.5" PointX="11.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

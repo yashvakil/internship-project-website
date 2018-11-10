@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Envision</title>
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.err{
+    color: #ff0000;
+    width: 80%;
+    margin-left:30px;
+    font-size: .9em;
+    margin-bottom:20px;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: #000;
+    padding: 14px 16px;
+    background-color: inherit;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #032042;
+    color:#ffffff;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #032042;
+    color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif;
+        }
+        
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+
+        .bg-img {
+            background-image: url(../../Content/images/background-img.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 75%;
+        }
+    </style>
+</head>
+<body>
+    @if (Session["user_type"].Equals("STD"))
+    {
+        @Html.Partial("~/Views/Shared/StudentHeader.cshtml")
+    }
+    else if (Session["user_type"].Equals("CMP"))
+    {
+        @Html.Partial("~/Views/Shared/CompanyHeader.cshtml")
+    }
+    else
+    {
+        @Html.Partial("~/Views/Shared/GuestHeader.cshtml")
+    }
+
+    <!-- Header with full-height image -->
+    <header class="bg-img w3-display-container w3-grayscale-min" id="home">
+        <span class="w3-display-topright w3-button w3-round-medium w3-gray" style="margin-top:60px;margin-right:15px;"><a href="/Company/Create" style="text-decoration:underline;color: #0026ff">Looking for an intern?</a></span>
+        <div class="w3-display-left w3-text-white" style="padding:48px">
+            <span class="w3-jumbo w3-hide-small">Do something that matters</span><br>
+            <span class="w3-xxlarge w3-hide-large w3-hide-medium">Do something that matters</span><br>
+            <p><a href="#about" class="w3-button w3-envision-blue w3-padding-large w3-large w3-margin-top">Learn more and start today</a></p>
+        </div>
+    </header>
+
+    <div class="w3-container" style="padding:50px 16px" id="about">
+        <h2 class="w3-center">Key Features of the Company</h2>
+        <div class="w3-row-padding w3-center">
+            <div class="w3-third w3-padding-32 w3-hover-envision-blue">
+                <i class="fa fa-briefcase w3-margin-bottom w3-jumbo w3-center"></i>
+                <p class="w3-large">Internships</p>
+                <p class="w3-margin-right w3-margin-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+            </div>
+            <div class="w3-third w3-padding-32 w3-hover-envision-blue">
+                <i class="fa fa-archive w3-margin-bottom w3-jumbo w3-center"></i>
+                <p class="w3-large">Projects</p>
+                <p class="w3-margin-right w3-margin-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+            </div>
+            <div class="w3-third w3-padding-32 w3-hover-envision-blue">
+                <i class="fa fa-users w3-margin-bottom w3-jumbo w3-center"></i>
+                <p class="w3-large">Community</p>
+                <p class="w3-margin-right w3-margin-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+            </div>
+        </div>
+    </div>
+
+
+    @if (ViewBag.Contact == null)
+    {
+    <div class="w3-container w3-light-grey" style="padding:100px 16px" id="contact">
+        <h2 class="w3-center">CONTACT</h2>
+        <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+        <div class="w3-row-padding" style="margin-top:64px">
+            <div class="w3-half" style="padding-left: 32px;padding-right: 32px;">
+                <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Ahmedabad, Gujarat, India</p>
+                <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +91 8347883667</p>
+                <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: envision@mail.com</p>
+                <br>
+                <form action="/Home/Index" method="post">
+                    <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="name"></p>
+                    <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="email"></p>
+                    <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="subject"></p>
+                    <p><textarea rows="5" class="w3-input w3-border" type="text" placeholder="Message" required name="msg"></textarea></p>
+                    <p>
+                        <button class="w3-button w3-black" type="submit">
+                            <i class="fa fa-paper-plane"></i> SEND MESSAGE
+                        </button>
+                    </p>
+                </form>
+            </div>
+            <div class="w3-half" style="padding-left: 32px;padding-right: 32px;">
+               
+                <div id="googleMap" style="width:100%;height:510px;"></div>
+            </div>
+        </div>
+    </div>
+    }
+    else
+    {
+        var err = ViewBag.Contact;
+        <div class="w3-container w3-light-grey" style="padding:100px 16px" id="contact">
+            <h2 class="w3-center">CONTACT</h2>
+            <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+            <div class="w3-row-padding" style="margin-top:64px">
+                <div class="w3-half" style="padding-left: 32px;padding-right: 32px;">
+                    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Ahmedabad, Gujarat, India</p>
+                    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: +91 8347883667</p>
+                    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: envision@mail.com</p>
+                    <br>
+                    <form action="/Home/Index" method="post">
+                        <p>
+                            <input class="w3-input w3-border" type="text" placeholder="Name" required name="name" value="@err.c.Name">
+                            <span class="err">@err.Name</span>
+                        </p>
+                        <p>
+                            <input class="w3-input w3-border" type="text" placeholder="Email" required name="email" value="@err.c.Email">
+                            <span class="err">@err.Email</span>
+                        </p>
+                        <p>
+                            <input class="w3-input w3-border" type="text" placeholder="Subject" required name="subject" value="@err.c.Subject">
+                            <span class="err">@err.Subject</span>
+                        </p>
+                        <p>
+                            <textarea rows="5" class="w3-input w3-border" type="text" placeholder="Message" required name="msg">@err.c.Msg</textarea>
+                            <span class="err">@err.Msg</span>
+                        </p>
+                        <p>
+                            <button class="w3-button w3-black" type="submit">
+                                <i class="fa fa-paper-plane"></i> SEND MESSAGE
+                            </button>
+                        </p>
+                    </form>
+                </div>
+                <div class="w3-half" style="padding-left: 32px;padding-right: 32px;">
+
+                    <div id="googleMap" style="width:100%;height:510px;"></div>
+                </div>
+            </div>
+        </div>
+    }
+    <script>
+    function myMap() {
+        myCenter = new google.maps.LatLng(41.878114, -87.629798);
+        var mapOptions = {
+            center: myCenter,
+            zoom: 12, scrollwheel: false, draggable: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myCenter
+        });
+        marker.setMap(map);
+    }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxsV_M0tUIsBe_-KBz3O2fA5l1pLokRhw&callback=myMap"></script>
+</body>
+</html>

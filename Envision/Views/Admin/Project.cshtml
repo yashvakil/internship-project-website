@@ -1,0 +1,561 @@
+﻿@model Envision.Models.ProjectView
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Envision</title>
+    <!-- Bootstrap core CSS-->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="~/Content/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: #000;
+                padding: 14px 16px;
+                background-color: inherit;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #032042;
+                color: #ffffff;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #032042;
+                    color: #fff;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+
+        .box-img {
+            max-height: 600px;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: Raleway, Open Sans, Droid Sans, Roboto,arial, sans-serif;
+        }
+
+        .blurred-bg {
+            background-color: rgba(128, 128, 128,0.5);
+        }
+
+        .box {
+            width: 500px;
+            height: 300px;
+            border-radius: 5px;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+            display: flex;
+            transition: box-shadow .3s ease;
+        }
+
+            .box .content {
+                margin: auto;
+            }
+
+            .box h1, .box h2, .box a, .box p {
+                color: white;
+                font-weight: 100;
+            }
+
+        .tinted h1, .tinted h2, .tinted a, .tinted p {
+            color: black;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .box h2 {
+            font-size: 14px;
+        }
+
+        .join-button {
+            outline: none;
+            height: 40px;
+            text-align: center;
+            width: 130px;
+            border-radius: 40px;
+            background: #fff;
+            border: 2px solid #032042;
+            color: #032042;
+            letter-spacing: 1px;
+            text-shadow: 0;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .user-widget {
+            width: 250px;
+            background: transparent;
+            padding: 0px;
+            border-radius: 4px;
+        }
+
+        .user-info {
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .user {
+            margin-top: 20px;
+            display: inline-block;
+            width: 150px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .followers {
+            font-size: 10px;
+            display: inline-block;
+            width: 150px;
+            color: #eaeaea;
+        }
+
+        #menu {
+            width: 250px;
+            font-family: Open Sans;
+            color: #808080;
+            font-size: 14px;
+        }
+
+        .event-calendar {
+            font-size: 14px;
+            font-family: Open Sans;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .event-list {
+            display: block;
+            list-style: none;
+            padding: 0px;
+            border-right: 1px solid rgb(229, 229, 229);
+        }
+
+        .event {
+            text-decoration: none;
+        }
+
+        .PEN .event-container {
+            border-left: 4px solid #535050; /*grey*/
+        }
+
+        .ONG .event-container {
+            border-left: 4px solid #FDD835; /*yellow*/
+        }
+
+        .CMP .event-container {
+            border-left: 4px solid #36940a; /*green*/
+        }
+
+        .CNL .event-container {
+            border-left: 4px solid #F44336; /*red*/
+        }
+
+        .event-container {
+            color: rgb(171, 171, 171);
+            transition: all 0.2s ease;
+            background: rgb(253, 248, 228);
+            border-left: 3px solid;
+            padding-top: 10px;
+            padding-bottom: 15px;
+        }
+
+        .detail-container {
+            margin-left: 10px;
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 3px;
+        }
+
+        .title {
+            text-transform: uppercase;
+            font-family: Oswald;
+            font-weight: 400;
+            font-size: 1.5em;
+            color: #8D6E63;
+        }
+
+        .description {
+            display: block;
+            font-size: 0.9em;
+            color: #4DD0E1;
+        }
+
+        .form {
+            padding-bottom: 10px;
+        }
+
+            .form label {
+                font-weight: 500;
+                font-size: 20px;
+            }
+
+            .form input[type="number"] {
+                width: 20%;
+                height: 30px;
+                border: 1px solid;
+                border-radius: 2px;
+                padding-left: 10px;
+            }
+
+            .form input[type="text"], .form input[type="email"] {
+                width: 60%;
+                height: 30px;
+                border: 1px solid;
+                border-radius: 2px;
+                padding-left: 10px;
+            }
+
+            .form input[type="number"]:checked, .form input[type="number"]:focus, .form input[type="number"]:active {
+                border: 1px solid #032042;
+            }
+
+            .form select {
+                min-width: 200px;
+                border-radius: 2px;
+                height: 30px;
+                border-radius: 2px;
+                padding-left: 10px;
+            }
+
+            .form input[type="submit"] {
+                background-color: #032042;
+                color: white;
+                border: none;
+                padding: 5px 30px;
+                font-size: 1rem;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+        input[type="submit"]:hover {
+            opacity: 0.5;
+        }
+        .AP {
+            background: #d4edda;
+        }
+
+        .ST {
+            background: #FCFFB3;
+        }
+
+        .DN {
+            background: #f8d7da;
+        }
+        .image{
+            width:30px;
+            height:30px;
+            margin:2px;
+        }
+        .img__wrap {
+            position: relative;
+        }
+
+        .img__description {
+            position: absolute;
+            padding: 5px 10px 5px 10px;
+            background: #808080;
+            color: #fff;
+            border-radius:5px;
+            width:100px;
+            visibility: hidden;
+            opacity: 0;
+            z-index:2;
+            /* transition effect. not necessary */
+            transition: opacity .2s, visibility .2s;
+        }
+
+        .img__wrap:hover .img__description {
+            visibility: visible;
+            opacity: 1;
+            z-index:2;
+        }
+    </style>
+</head>
+<body>
+    @Html.Partial("~/Views/Shared/AdminHeader.cshtml")
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="w3-container">
+                <div class="w3-row-padding w3-container" style="margin-top:100px;">
+                    <button onclick="window.location.href = '/Admin/DeleteProject?projectid=@Model.Id'"> Delete </button>
+                </div>
+                <div class="w3-row-padding">
+                    <div class="" style="padding:0px;">
+                        <div class="w3-display-container" style="padding:0px;">
+                            @if (Model.Pic != null)
+                            {
+                                string imageBase64 = Convert.ToBase64String(Model.Pic);
+                                string imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                                <img class="box-img" src="@imageSrc" alt="Avatar" style="width:100%" />
+                            }
+                            else
+                            {
+                                <img class="box-img" src="~/Content/images/chicken.jpg" style="width:100%" />
+                            }
+
+                            <div class="w3-display-middle">
+                                <div class="box blurred-bg tinted">
+                                    <div class="content">
+                                        <h1>@Model.Name</h1>
+                                        <h2>By <a href="/Student/Details/@Model.CreatedById">@Model.CreatedByName</a></h2>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-row-padding w3-margin-top">
+                    <div class="w3-third">
+                        <div class="w3-margin-top w3-card-2 w3-white w3-text-black" style="padding: 20px 10%;text-align:center">
+                            <h1 style="font-weight:700">Project Overview</h1>
+                            <p style="text-align:left;">@Model.ProjectOverview</p>
+                        </div>
+                    </div>
+                    <div class="w3-third">
+                        <div class="w3-margin-top w3-card-2 w3-white w3-text-black" style="padding: 20px 10%;text-align:center">
+                            <h1 style="font-weight:700">Where we need help in</h1>
+                            <p style="text-align:left;">@Model.ProjectHelp</p>
+                        </div>
+                    </div>
+                    <div class="w3-third">
+                        <div class="w3-margin-top w3-card-2 w3-white w3-text-black" style="padding: 20px 10%;text-align:center">
+                            <h1 style="font-weight:700">What kind of team we are looking for</h1>
+                            <p style="text-align:left;">@Model.TeamLooking</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="w3-row-padding w3-margin-top">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fa fa-table"></i> Project Applicants
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered display" id="dataTable1" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Pic</th>
+                                            <th>Category</th>
+                                            <th>Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            Dictionary<string, string> dict = new Dictionary<string, string>();
+                                            dict["AP"] = "Approved";
+                                            dict["ST"] = "Starred";
+                                            dict["DN"] = "Denied";
+                                            dict["IP"] = "No Status";
+                                        }
+                                        @foreach (var item in Model.ProjectJoins)
+                                        {
+                                            <tr class="@item.Status">
+                                                <td>@item.Name</td>
+                                                <td style="background:#fff;">
+                                                    <button type="button" class="button" onclick="window.location.href = '/Student/Details/@item.S_Id'">Details</button>
+                                                    @if (item.Status.Equals("ST"))
+                                                    {
+                                                        <i class="fa fa-star fa-lg w3-margin-left"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-star-o fa-lg w3-margin-left" style="cursor:pointer" onclick="window.location.href='/Project/Join?studentid=@item.S_Id&projectid=@Model.Id&status=ST'"></i>
+                                                    }
+                                                    @if (!item.Status.Equals("DN"))
+                                                    {
+                                                        <i class="fa fa-times fa-lg w3-margin-left" style="cursor:pointer" onclick="window.location.href='/Project/Join?studentid=@item.S_Id&projectid=@Model.Id&status=DN'"></i>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <select style="min-width:100px;margin-right:20px;height:30px;border-radius:3px;">
+                                                        @foreach (var l in ViewBag.Roles)
+                                                        {
+                                                            <option value="@l.Id">@l.Name</option>
+                                                        }
+                                                    </select>
+                                                    <button type="button" class="button">Approve</button>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-top">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fa fa-table"></i> Project Users
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Internship In</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model.ProjectUsers)
+                                        {
+                                            <tr>
+                                                <td>@item.UserName</td>
+                                                <td>@item.Role</td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-top">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fa fa-table"></i> Project Tasks
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Internship In</th>
+                                            <th>Apply Before</th>
+                                            <th>Apply Before</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var l in Model.ProjectTasks)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div><b>@l.Heading</b></div>
+                                                    <div>@l.Description</div>
+                                                </td>
+                                                <td>
+                                                    @foreach (var u in l.UserTasks)
+                                                    {
+                                                        <span style="overflow:hidden;object-fit:cover" class="img__wrap">
+                                                            @if (u.Pic == null)
+                                                            {
+                                                                <img src="~/Content/images/chicken.jpg" class="image" />
+                                                            }
+                                                            else
+                                                            {
+                                                                string imageBase64 = Convert.ToBase64String(u.Pic);
+                                                                string imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                                                                <img src="@imageSrc" class="image" />
+                                                            }
+                                                            <span class="img__description">@u.Name</span>
+                                                        </span>
+                                                    }
+                                                </td>
+                                                @{ 
+                                                    var date = ((DateTime)l.DeadLine).ToShortDateString();
+                                                }
+                                                <td>@date</td>
+                                                <td>@l.Status</td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="~/Content/vendor/chart.js/Chart.min.js"></script>
+    <script src="~/Content/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Content/js/sb-admin.min.js"></script>
+    <!-- Custom scripts for this page-->
+    <script src="~/Content/js/sb-admin-datatables.min.js"></script>
+    <script src="~/Content/js/sb-admin-charts.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('table.display').DataTable();
+        });
+    </script>
+</body>
+</html>

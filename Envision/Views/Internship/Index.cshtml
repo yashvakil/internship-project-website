@@ -1,0 +1,678 @@
+﻿@model IEnumerable<Envision.Models.InternshipView>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Envision</title>
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+            .dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: #000;
+    padding: 14px 16px;
+    background-color: inherit;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #032042;
+    color:#ffffff;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #032042;
+    color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+    body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif;
+        }
+        
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+
+    .recipe-card {
+        background: #ececec;
+        color: #000;
+        border: 0.2px solid #032042;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1rem;
+        margin: 0.5em;
+        width: 90%;
+        width: 600px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+        .recipe-card article {
+            padding: 1.25em 1.5em;
+        }
+
+            .recipe-card article ul {
+                list-style: none;
+                margin: 0.5em 0 0;
+                padding: 0;
+            }
+
+                .recipe-card article ul li {
+                    display: inline-block;
+                    margin-left: 1em;
+                    line-height: 1em;
+                }
+
+                    .recipe-card article ul li:first-child {
+                        margin-left: 0;
+                    }
+
+                    .recipe-card article ul li .icon {
+                        vertical-align: bottom;
+                    }
+
+                    .recipe-card article ul li span:nth-of-type(2) {
+                        margin-left: 0.5em;
+                        font-size: 0.8em;
+                        font-weight: 300;
+                        vertical-align: middle;
+                        color: #838689;
+                    }
+
+            .recipe-card article .button {
+                right: 3%;
+                position: relative;
+                display: inline-block;
+                outline: 0;
+                padding: 8px 16px;
+                overflow: hidden;
+                text-decoration: none;
+                color: inherit;
+                background-color: inherit;
+                text-align: center;
+                cursor: pointer;
+                white-space: nowrap;
+            }
+
+            .recipe-card article h2, .recipe-card article h3 {
+                margin: 0;
+                font-weight: 300;
+            }
+
+            .recipe-card article h2 {
+                font-size: 1.75em;
+                color: #032042;
+            }
+
+            .recipe-card article h3 {
+                font-size: 0.9375em;
+                color: #002aff;
+            }
+
+            .recipe-card article p {
+                margin: 1.25em 0;
+                font-size: 0.9375em;
+                font-weight: 400;
+                color: #222222;
+            }
+
+                .recipe-card article p span {
+                    font-weight: 700;
+                    color: #000000;
+                }
+
+            .recipe-card article table {
+                width: 100%;
+            }
+
+                .recipe-card article table tr th {
+                    font-size: 15px;
+                    font-weight: 400;
+                    color: #222222;
+                }
+
+                .recipe-card article table tr td {
+                    text-align: center;
+                }
+
+                .recipe-card article table tr th span {
+                    font-weight: 700;
+                    color: #000000;
+                }
+
+            .recipe-card article .ingredients {
+                margin: 2em 0 0.5em;
+            }
+
+      
+    .cd-filter-block {
+        margin-bottom: 1.6em;
+    }
+
+        .cd-filter-block h4 {
+            /* filter block title */
+            position: relative;
+            margin-bottom: 0px;
+            color: #41307c;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.9rem;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .cd-filter-block input, .cd-filter-block select,
+        .cd-filter-block .radio-label::before,
+        .cd-filter-block .checkbox-label::before {
+            /* shared style for input elements */
+            font-family: "Open Sans", sans-serif;
+            border-radius: 0;
+            background-color: #ffffff;
+            border: 2px solid #e6e6e6;
+        }
+
+    .cd-filter-content {
+        margin-top: 5px;
+    }
+
+    .cd-filter-block input[type='search'],
+    .cd-filter-block input[type='text'],
+    .cd-filter-block select {
+        width: 100%;
+        padding: .2em;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        box-shadow: none;
+    }
+
+        .cd-filter-block input[type='search']:focus,
+        .cd-filter-block input[type='text']:focus,
+        .cd-filter-block select:focus {
+            outline: none;
+            background-color: #ffffff;
+            border-color: #41307c;
+        }
+
+    .cd-filter-block input[type='search'] {
+        /* custom style for the search element */
+        border-color: transparent;
+        background-color: #e6e6e6;
+        border-radius: 5px 0px 0px 5px;
+        max-width: 220px;
+        padding-left: 5px;
+        font-size: 1rem !important;
+    }
+
+        .cd-filter-block input[type='search']::-webkit-search-cancel-button {
+            display: none;
+        }
+
+    .cd-filter-block .cd-select {
+        /* select element wrapper */
+        position: relative;
+    }
+
+        .cd-filter-block .cd-select::after {
+            /* switcher arrow for select element */
+            content: " ";
+            position: absolute;
+            z-index: 1;
+            right: 14px;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+            display: block;
+            width: 16px;
+            height: 16px;
+            background: url("https://codyhouse.co/demo/content-filter/img/cd-icon-arrow.svg") no-repeat center center;
+            pointer-events: none;
+        }
+
+    .cd-filter-block select {
+        padding-left: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+        .cd-filter-block select::-ms-expand {
+            display: none;
+        }
+
+
+    .cd-filter-block .list li {
+        position: absolute;
+        left: inherit;
+        margin-bottom: .3em;
+        list-style-type: none;
+    }
+
+        .cd-filter-block .list li:last-of-type {
+            margin-bottom: 0;
+        }
+
+    .cd-filter-block input[type=radio],
+    .cd-filter-block input[type=checkbox] {
+        /* hide original check and radio buttons */
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+    }
+
+    .cd-filter-block .checkbox-label,
+    .cd-filter-block .radio-label {
+        padding-left: 20px;
+        font-size: 1rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        .cd-filter-block .checkbox-label::before, .cd-filter-block .checkbox-label::after,
+        .cd-filter-block .radio-label::before,
+        .cd-filter-block .radio-label::after {
+            /* custom radio and check boxes */
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        .cd-filter-block .checkbox-label::before,
+        .cd-filter-block .radio-label::before {
+            width: 16px;
+            height: 16px;
+            left: 0;
+        }
+
+        .cd-filter-block .checkbox-label::after,
+        .cd-filter-block .radio-label::after {
+            /* check mark - hidden */
+            display: none;
+        }
+
+        .cd-filter-block .checkbox-label::after {
+            /* check mark style for check boxes */
+            width: 16px;
+            height: 16px;
+        }
+
+        .cd-filter-block .radio-label::before,
+        .cd-filter-block .radio-label::after {
+            border-radius: 50%;
+        }
+
+        .cd-filter-block .radio-label::after {
+            /* check mark style for radio buttons */
+            width: 6px;
+            height: 6px;
+            background-color: #ffffff;
+            left: 5px;
+        }
+
+    .cd-filter-block input[type=radio]:checked + label::before,
+    .cd-filter-block input[type=checkbox]:checked + label::before {
+        border-color: #41307c;
+        background-color: #41307c;
+    }
+
+    .cd-filter-block input[type=radio]:checked + label::after,
+    .cd-filter-block input[type=checkbox]:checked + label::after {
+        display: block;
+    }
+
+    .cd-filter {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 320px;
+        background: #ffffff;
+        opacity: 1;
+        box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+        .cd-filter form {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 20px;
+            padding-right: 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+    h1 {
+        display: table;
+        margin: 0 auto;
+    }
+
+        h1 span {
+            width: 50%;
+            font-size: 20px;
+            background: #f2f0e4;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h1 + * {
+            border-top: solid 2px #adac97;
+            margin-top: -20px;
+        }
+
+    input[type="number"] {
+        font-size: 1em;
+        width: 80px;
+    }
+
+    /* Removes the clear button from date inputs */
+    input[type="date"]::-webkit-clear-button {
+        display: none;
+    }
+
+    /* Removes the spin button */
+    input[type="date"]::-webkit-inner-spin-button {
+        display: none;
+    }
+
+    /* Always display the drop down caret */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        color: #2c3e50;
+    }
+
+    /* A few custom styles for date inputs */
+    input[type="date"] {
+        width: 110px;
+        appearance: none;
+        -webkit-appearance: none;
+        color: #616161;
+        font-family: "Helvetica", arial, sans-serif;
+        font-size: 13px;
+        border: 1px solid #ccc;
+        background: #ffffff;
+        padding: 5px;
+        display: inline-block !important;
+        visibility: visible !important;
+    }
+
+    input[class="submit"] {
+        background-color: #032042;
+        color: white;
+        border: none;
+        padding-left: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 1rem;
+        margin-left: -5px;
+        border-radius: 0px 5px 5px 0px;
+        cursor: pointer;
+    }
+
+    input[class="submit"]:hover {
+        opacity: 0.5;
+    }
+
+    input[class="button"]{
+        background-color: #3b7116;
+        color: white;
+        border: none;
+        padding-left: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 20px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+    input[class="button"]:hover{
+        opacity: 0.5;
+    }
+</style>
+</head>
+<body>
+    @if (Session["user_type"].Equals("STD"))
+    {
+        @Html.Partial("~/Views/Shared/StudentHeader.cshtml")
+    }
+    else if (Session["user_type"].Equals("CMP"))
+    {
+        @Html.Partial("~/Views/Shared/CompanyHeader.cshtml")
+    }
+    else
+    {
+        @Html.Partial("~/Views/Shared/GuestHeader.cshtml")
+    }
+    <div style="margin-top:100px;"></div>
+    <div class="w3-content w3-row" style="margin-top: 50px">
+        <div class="cd-filter filter-is-visible" style="float: left">
+            <form method="post" action="/Internship/Index/" name="filterform">
+                <div class="cd-filter-block">
+                    <h4>Internship In</h4>
+                    <div class="cd-filter-content list">
+                        <li>
+                            @if (((Envision.Models.InternshipFilter)ViewBag.Filter).StartUp != null)
+                            {
+                                <input type="checkbox" id="checkbox1" name="StartUp" value="false" checked>
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="checkbox1" name="StartUp" value="false">
+                            }
+                            <label class="checkbox-label" for="checkbox1">Start Ups</label>
+                        </li><br>
+                        <li>
+                            @if (((Envision.Models.InternshipFilter)ViewBag.Filter).Established != null)
+                            {
+                                <input type="checkbox" id="checkbox2" name="Established" value="false" checked>
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="checkbox2" name="Established" value="false">
+                            }
+                            <label class="checkbox-label" for="checkbox2">Established Companies</label>
+                        </li><br>
+                        <li>
+                            @if (((Envision.Models.InternshipFilter)ViewBag.Filter).Ngo != null)
+                            {
+                                <input type="checkbox" id="checkbox3" name="Ngo" value="false" checked>
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="checkbox3" name="Ngo" value="false">
+                            }
+                            <label class="checkbox-label" for="checkbox3">NGOs</label>
+                        </li><br>
+                        <li>
+                            @if (((Envision.Models.InternshipFilter)ViewBag.Filter).Gov != null)
+                            {
+                                <input type="checkbox" id="checkbox1" name="Gov" value="false" checked>
+                            }
+                            else
+                            {
+                                <input type="checkbox" id="checkbox1" name="Gov" value="false">
+                            }
+                            <label class="checkbox-label" for="checkbox4">Goverment Sectors</label>
+                        </li><br>
+                    </div><!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+
+                <div class="cd-filter-block">
+                    <h4>Category</h4>
+
+                    <div class="cd-filter-content">
+                        <div class="cd-select cd-filters">
+                            <select class="filter" name="Category" id="selectThis">
+                                <option value="0" selected>Choose A Category</option>
+                                @foreach(var cl in ViewBag.Categories)
+                                {
+                                    var c = cl.Name;
+                                    if ( ((Envision.Models.InternshipFilter)ViewBag.Filter).Category != null && ((Envision.Models.InternshipFilter)ViewBag.Filter).Category.Equals(c))
+                                    {
+                                        <option value="@cl.Name" selected>@cl.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@cl.Name">@cl.Name</option>
+                                    }
+
+                                }
+                            </select>
+                        </div> <!-- cd-select -->
+                    </div> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+
+                <div class="cd-filter-block">
+                    <h4>Location</h4>
+
+                    <div class="cd-filter-content">
+                        <div class="cd-select cd-filters">
+                            <select class="filter" name="Location" id="selectThis1">
+                                <option value="0" selected>Choose A Location</option>
+                                @foreach (var ll in ViewBag.Location)
+                                {
+                                    var str = ll.City;
+                                    if (((Envision.Models.InternshipFilter)ViewBag.Filter).Location != null && ((Envision.Models.InternshipFilter)ViewBag.Filter).Location.Equals(str))
+                                    {
+                                        <option value="@ll.City" selected>@ll.City</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@ll.City">@ll.City</option>
+                                    }
+                                }
+                            </select>
+                        </div> <!-- cd-select -->
+                    </div> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+
+                <div class="cd-filter-block">
+                    <h4>Max Duration</h4>
+                    <div class="cd-filter-content">
+                        <input type="number" name="MaxDuration">&nbsp;&nbsp;Months
+                    </div>
+                </div>
+                <div class="cd-filter-block">
+                    <h4>Start Date Between</h4>
+                    <input type="date" name="StartMin">&nbsp;AND&nbsp;<input type="date" name="StartMax">
+                </div>
+
+                <div class="cd-filter-block">
+                    <input type="submit" class="button" name="filter" value="Filter" />
+                </div>
+            </form>
+        </div>
+        
+        <div style="position: relative;float: right;max-height:900px;overflow-y:scroll">
+        @foreach (var item in Model)
+        {
+                <div class="recipe-card">
+                <article>
+                    @{
+                        Dictionary<string, string> dict = new Dictionary<string, string>();
+                        dict["WH"] = "Work From Home";
+                        dict["PT"] = "Part Time";
+                        dict["FT"] = "Full Time";
+                    }
+                    <h2 style="font-weight: bold">@Html.DisplayFor(modelItem => item.InternshipIn)
+                        <label class="button" style="float: right;background-color:#000;color: #fff;cursor:none;border-radius:5px;height:30px;font-size:12px;">@dict[item.InternshipType]</label>
+                    </h2>
+                    <h3 style="margin-top: -7px;font-weight: 500">@Html.DisplayFor(modelItem => item.C_Name)<span class="w3-margin-left">@Html.DisplayFor(modelItem => item.CompanyType)</span></h3>
+                    <p class="ingredients"><span>Locations:&nbsp;</span>@foreach (var l in item.InternshipLocations)
+                    {
+                        @Html.DisplayFor(modell => l) @:&nbsp
+                    }</p>
+                    <table>
+                        <tr>
+                            <th><span>Start Date</span></th>
+                            <th><span>Apply Before</span></th>
+                            <th><span>Posted On</span></th>
+                        </tr>
+                        <tr>
+                            @if (String.IsNullOrEmpty(item.StartDate.ToString()))
+                            {
+                                <td>Immediately</td>
+                            }
+                            else
+                            {
+                                var sd = ((DateTime)item.StartDate).ToShortDateString();
+                                <td>@Html.DisplayFor(modelItem => sd)</td>
+                            }
+                            @{var ab = item.ApplyBefore.ToShortDateString();}
+                            @{var po = item.PostedOn.ToShortDateString();}
+                            <td>@Html.DisplayFor(modelItem => ab)</td>
+                            <td>@Html.DisplayFor(modelItem => po)</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <div class="w3-row">
+                        <ul style="max-width: 400px;">
+                            <li><span class="fa fa-clock-o fa-lg w3-text-blue"></span><span>@Html.DisplayFor(modelItem => item.MinDuration) Month</span></li>
+                            <li><span class="fa fa-users fa-lg w3-text-blue"></span><span>@Html.DisplayFor(modelItem => item.AvailableSeats) Seats</span></li>
+                            @if (item.Stipend == null)
+                            {
+                                <li><span class="fa fa-money fa-lg w3-text-blue"></span><span>None Rs</span></li>
+                            }
+                            else
+                            {
+                                <li><span class="fa fa-money fa-lg w3-text-blue"></span><span>@Html.DisplayFor(modelItem => item.Stipend) Rs</span></li>
+                            }
+                            
+                        </ul>
+                        <label class="button" style="float: right;background-color: #032042;color: #ffffff;margin-top: -30px" onclick="window.location.href='/Internship/Details/@item.Id'">Details</label>
+                    </div>
+
+                </article>
+            </div>
+        }
+        </div>
+    </div>
+</body>
+</html>

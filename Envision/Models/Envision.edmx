@@ -1,0 +1,2024 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EnvisionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminQuery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Query" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Applied">
+          <Key>
+            <PropertyRef Name="S_Id" />
+            <PropertyRef Name="I_Id" />
+          </Key>
+          <Property Name="S_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="I_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CategoriesList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="WebsiteURL" Type="nvarchar" MaxLength="2083" />
+          <Property Name="Logo" Type="varbinary(max)" />
+          <Property Name="Verified" Type="bit" Nullable="false" />
+          <Property Name="About" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="CompanyType" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="GoogleId" Type="nvarchar" MaxLength="300" />
+          <Property Name="RegTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CompanyIndustry">
+          <Key>
+            <PropertyRef Name="C_Id" />
+            <PropertyRef Name="I_Id" />
+          </Key>
+          <Property Name="C_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="I_Id" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Msg" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="Read" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DegreeList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IndustryList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Internship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="C_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="ApplyBefore" Type="date" Nullable="false" />
+          <Property Name="Stipend" Type="int" />
+          <Property Name="InternshipType" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="InternshipIn" Type="int" Nullable="false" />
+          <Property Name="AvailableSeats" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="MinDuration" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="MaxDuration" Type="numeric" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="ContactEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="About" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ContactMobile" Type="nvarchar" MaxLength="10" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InternshipLocations">
+          <Key>
+            <PropertyRef Name="I_Id" />
+            <PropertyRef Name="L_Id" />
+          </Key>
+          <Property Name="I_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="L_Id" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InternshipPerks">
+          <Key>
+            <PropertyRef Name="I_Id" />
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="I_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="P_Id" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InternshipSkills">
+          <Key>
+            <PropertyRef Name="I_Id" />
+            <PropertyRef Name="S_Id" />
+          </Key>
+          <Property Name="I_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="S_Id" Type="int" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Join">
+          <Key>
+            <PropertyRef Name="S_Id" />
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="S_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="P_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LocationsList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserType" />
+            <PropertyRef Name="Link" />
+            <PropertyRef Name="Time" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserType" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="HostName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Link" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="IP" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PerksList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="C_Id" Type="int" Nullable="false" />
+          <Property Name="ProjectOverview" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ProjectHelp" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TeamLooking" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Pic" Type="varbinary(max)" />
+          <Property Name="CreatedDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectTasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="P_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="T_Id" Type="int" Nullable="false" />
+          <Property Name="DeadLine" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="P_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="U_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="R_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoleList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SkilledIn">
+          <Key>
+            <PropertyRef Name="U_Id" />
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="U_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="S_ID" Type="int" Nullable="false" />
+          <Property Name="Value" Type="numeric" Precision="2" Scale="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SkillsList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="10" />
+          <Property Name="CardFront" Type="varbinary(max)" Nullable="false" />
+          <Property Name="CardBack" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProfilePic" Type="varbinary(max)" />
+          <Property Name="Verified" Type="bit" Nullable="false" />
+          <Property Name="RegTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Studied">
+          <Key>
+            <PropertyRef Name="S_Id" />
+            <PropertyRef Name="Degree" />
+          </Key>
+          <Property Name="S_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="GoogleId" Type="nvarchar" MaxLength="300" />
+          <Property Name="Degree" Type="int" Nullable="false" />
+          <Property Name="GraduationYear" Type="numeric" Precision="5" Scale="1" />
+        </EntityType>
+        <EntityType Name="TasksAssigned">
+          <Key>
+            <PropertyRef Name="PU_Id" />
+            <PropertyRef Name="PT_Id" />
+          </Key>
+          <Property Name="PU_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PT_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TasksList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VolunteerWork">
+          <Key>
+            <PropertyRef Name="S_Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="Topic" />
+          </Key>
+          <Property Name="S_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="GoogleId" Type="nvarchar" MaxLength="300" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Topic" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkExperience">
+          <Key>
+            <PropertyRef Name="S_Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="Designation" />
+          </Key>
+          <Property Name="S_Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="GoogleId" Type="nvarchar" MaxLength="300" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CategoryProject">
+          <End Role="CategoriesList" Type="Self.CategoriesList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriesList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="C_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CId">
+          <End Role="Company" Type="Self.Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Internship" Type="Self.Internship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Internship">
+              <PropertyRef Name="C_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CIdCompanyIndustry">
+          <End Role="Company" Type="Self.Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CompanyIndustry" Type="Self.CompanyIndustry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyIndustry">
+              <PropertyRef Name="C_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreatedByProject">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DegreeStudied">
+          <End Role="DegreeList" Type="Self.DegreeList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Studied" Type="Self.Studied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DegreeList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Studied">
+              <PropertyRef Name="Degree" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IIdApplied">
+          <End Role="Internship" Type="Self.Internship" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Applied" Type="Self.Applied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internship">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Applied">
+              <PropertyRef Name="I_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IIdCompanyIndustry">
+          <End Role="IndustryList" Type="Self.IndustryList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CompanyIndustry" Type="Self.CompanyIndustry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IndustryList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyIndustry">
+              <PropertyRef Name="I_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IIdInternshipLocations">
+          <End Role="Internship" Type="Self.Internship" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InternshipLocations" Type="Self.InternshipLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internship">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipLocations">
+              <PropertyRef Name="I_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IIdInternshipPerks">
+          <End Role="Internship" Type="Self.Internship" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InternshipPerks" Type="Self.InternshipPerks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internship">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipPerks">
+              <PropertyRef Name="I_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IIdInternshipSkills">
+          <End Role="Internship" Type="Self.Internship" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InternshipSkills" Type="Self.InternshipSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internship">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipSkills">
+              <PropertyRef Name="I_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IIdJoin">
+          <End Role="Project" Type="Self.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Join" Type="Self.Join" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Join">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InternshipIn">
+          <End Role="CategoriesList" Type="Self.CategoriesList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Internship" Type="Self.Internship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriesList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Internship">
+              <PropertyRef Name="InternshipIn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIdInternshipLocations">
+          <End Role="LocationsList" Type="Self.LocationsList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InternshipLocations" Type="Self.InternshipLocations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LocationsList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipLocations">
+              <PropertyRef Name="L_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PIdInternshipPerks">
+          <End Role="PerksList" Type="Self.PerksList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InternshipPerks" Type="Self.InternshipPerks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PerksList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipPerks">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PIdProjectTasks">
+          <End Role="Project" Type="Self.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTasks" Type="Self.ProjectTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTasks">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PIdProjectUsers">
+          <End Role="Project" Type="Self.Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectUsers" Type="Self.ProjectUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectUsers">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PTIdTasksAssigned">
+          <End Role="ProjectTasks" Type="Self.ProjectTasks" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TasksAssigned" Type="Self.TasksAssigned" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectTasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TasksAssigned">
+              <PropertyRef Name="PT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PUIdTasksAssigned">
+          <End Role="ProjectUsers" Type="Self.ProjectUsers" Multiplicity="1" />
+          <End Role="TasksAssigned" Type="Self.TasksAssigned" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TasksAssigned">
+              <PropertyRef Name="PU_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RIdProjectUsers">
+          <End Role="RoleList" Type="Self.RoleList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectUsers" Type="Self.ProjectUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectUsers">
+              <PropertyRef Name="R_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdApplied">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Applied" Type="Self.Applied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Applied">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdInternshipSkills">
+          <End Role="SkillsList" Type="Self.SkillsList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InternshipSkills" Type="Self.InternshipSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkillsList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipSkills">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdJoin">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Join" Type="Self.Join" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Join">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdSkilledIn">
+          <End Role="SkillsList" Type="Self.SkillsList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SkilledIn" Type="Self.SkilledIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkillsList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkilledIn">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdStudied">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Studied" Type="Self.Studied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Studied">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdVolunteerWork">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VolunteerWork" Type="Self.VolunteerWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VolunteerWork">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdWorkExperience">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WorkExperience" Type="Self.WorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkExperience">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIdProjectTasks">
+          <End Role="TasksList" Type="Self.TasksList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectTasks" Type="Self.ProjectTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TasksList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTasks">
+              <PropertyRef Name="T_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UIdProjectUsers">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectUsers" Type="Self.ProjectUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectUsers">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UIdSkilledIn">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SkilledIn" Type="Self.SkilledIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkilledIn">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EnvisionModelStoreContainer">
+          <EntitySet Name="AdminQuery" EntityType="Self.AdminQuery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Applied" EntityType="Self.Applied" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoriesList" EntityType="Self.CategoriesList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyIndustry" EntityType="Self.CompanyIndustry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DegreeList" EntityType="Self.DegreeList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IndustryList" EntityType="Self.IndustryList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Internship" EntityType="Self.Internship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InternshipLocations" EntityType="Self.InternshipLocations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InternshipPerks" EntityType="Self.InternshipPerks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InternshipSkills" EntityType="Self.InternshipSkills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Join" EntityType="Self.Join" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationsList" EntityType="Self.LocationsList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PerksList" EntityType="Self.PerksList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectTasks" EntityType="Self.ProjectTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectUsers" EntityType="Self.ProjectUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleList" EntityType="Self.RoleList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkilledIn" EntityType="Self.SkilledIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkillsList" EntityType="Self.SkillsList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Studied" EntityType="Self.Studied" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TasksAssigned" EntityType="Self.TasksAssigned" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TasksList" EntityType="Self.TasksList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VolunteerWork" EntityType="Self.VolunteerWork" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkExperience" EntityType="Self.WorkExperience" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CategoryProject" Association="Self.FK_CategoryProject">
+            <End Role="CategoriesList" EntitySet="CategoriesList" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CId" Association="Self.FK_CId">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Internship" EntitySet="Internship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CIdCompanyIndustry" Association="Self.FK_CIdCompanyIndustry">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyIndustry" EntitySet="CompanyIndustry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreatedByProject" Association="Self.FK_CreatedByProject">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DegreeStudied" Association="Self.FK_DegreeStudied">
+            <End Role="DegreeList" EntitySet="DegreeList" />
+            <End Role="Studied" EntitySet="Studied" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IIdApplied" Association="Self.FK_IIdApplied">
+            <End Role="Internship" EntitySet="Internship" />
+            <End Role="Applied" EntitySet="Applied" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IIdCompanyIndustry" Association="Self.FK_IIdCompanyIndustry">
+            <End Role="IndustryList" EntitySet="IndustryList" />
+            <End Role="CompanyIndustry" EntitySet="CompanyIndustry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IIdInternshipLocations" Association="Self.FK_IIdInternshipLocations">
+            <End Role="Internship" EntitySet="Internship" />
+            <End Role="InternshipLocations" EntitySet="InternshipLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IIdInternshipPerks" Association="Self.FK_IIdInternshipPerks">
+            <End Role="Internship" EntitySet="Internship" />
+            <End Role="InternshipPerks" EntitySet="InternshipPerks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IIdInternshipSkills" Association="Self.FK_IIdInternshipSkills">
+            <End Role="Internship" EntitySet="Internship" />
+            <End Role="InternshipSkills" EntitySet="InternshipSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IIdJoin" Association="Self.FK_IIdJoin">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Join" EntitySet="Join" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InternshipIn" Association="Self.FK_InternshipIn">
+            <End Role="CategoriesList" EntitySet="CategoriesList" />
+            <End Role="Internship" EntitySet="Internship" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIdInternshipLocations" Association="Self.FK_LIdInternshipLocations">
+            <End Role="LocationsList" EntitySet="LocationsList" />
+            <End Role="InternshipLocations" EntitySet="InternshipLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PIdInternshipPerks" Association="Self.FK_PIdInternshipPerks">
+            <End Role="PerksList" EntitySet="PerksList" />
+            <End Role="InternshipPerks" EntitySet="InternshipPerks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PIdProjectTasks" Association="Self.FK_PIdProjectTasks">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectTasks" EntitySet="ProjectTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PIdProjectUsers" Association="Self.FK_PIdProjectUsers">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectUsers" EntitySet="ProjectUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PTIdTasksAssigned" Association="Self.FK_PTIdTasksAssigned">
+            <End Role="ProjectTasks" EntitySet="ProjectTasks" />
+            <End Role="TasksAssigned" EntitySet="TasksAssigned" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PUIdTasksAssigned" Association="Self.FK_PUIdTasksAssigned">
+            <End Role="ProjectUsers" EntitySet="ProjectUsers" />
+            <End Role="TasksAssigned" EntitySet="TasksAssigned" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RIdProjectUsers" Association="Self.FK_RIdProjectUsers">
+            <End Role="RoleList" EntitySet="RoleList" />
+            <End Role="ProjectUsers" EntitySet="ProjectUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdApplied" Association="Self.FK_SIdApplied">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Applied" EntitySet="Applied" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdInternshipSkills" Association="Self.FK_SIdInternshipSkills">
+            <End Role="SkillsList" EntitySet="SkillsList" />
+            <End Role="InternshipSkills" EntitySet="InternshipSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdJoin" Association="Self.FK_SIdJoin">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Join" EntitySet="Join" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdSkilledIn" Association="Self.FK_SIdSkilledIn">
+            <End Role="SkillsList" EntitySet="SkillsList" />
+            <End Role="SkilledIn" EntitySet="SkilledIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdStudied" Association="Self.FK_SIdStudied">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Studied" EntitySet="Studied" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdVolunteerWork" Association="Self.FK_SIdVolunteerWork">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="VolunteerWork" EntitySet="VolunteerWork" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdWorkExperience" Association="Self.FK_SIdWorkExperience">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="WorkExperience" EntitySet="WorkExperience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIdProjectTasks" Association="Self.FK_TIdProjectTasks">
+            <End Role="TasksList" EntitySet="TasksList" />
+            <End Role="ProjectTasks" EntitySet="ProjectTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UIdProjectUsers" Association="Self.FK_UIdProjectUsers">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="ProjectUsers" EntitySet="ProjectUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UIdSkilledIn" Association="Self.FK_UIdSkilledIn">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="SkilledIn" EntitySet="SkilledIn" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EnvisionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Applied">
+          <Key>
+            <PropertyRef Name="S_Id" />
+            <PropertyRef Name="I_Id" />
+          </Key>
+          <Property Name="S_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="I_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Internship" Relationship="Self.FK_IIdApplied" FromRole="Applied" ToRole="Internship" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_SIdApplied" FromRole="Applied" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="CategoriesList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Internships" Relationship="Self.FK_InternshipIn" FromRole="CategoriesList" ToRole="Internship" />
+          <NavigationProperty Name="Projects" Relationship="EnvisionModel.FK_CategoryProject" FromRole="CategoriesList" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WebsiteURL" Type="String" MaxLength="2083" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Verified" Type="Boolean" Nullable="false" />
+          <Property Name="About" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyType" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GoogleId" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="RegTime" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="Internships" Relationship="Self.FK_CId" FromRole="Company" ToRole="Internship" />
+          <NavigationProperty Name="CompanyIndustries" Relationship="Self.FK_CIdCompanyIndustry" FromRole="Company" ToRole="CompanyIndustry" />
+        </EntityType>
+        <EntityType Name="CompanyIndustry">
+          <Key>
+            <PropertyRef Name="C_Id" />
+            <PropertyRef Name="I_Id" />
+          </Key>
+          <Property Name="C_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="I_Id" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_CIdCompanyIndustry" FromRole="CompanyIndustry" ToRole="Company" />
+          <NavigationProperty Name="IndustryList" Relationship="Self.FK_IIdCompanyIndustry" FromRole="CompanyIndustry" ToRole="IndustryList" />
+        </EntityType>
+        <EntityType Name="DegreeList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Studieds" Relationship="Self.FK_DegreeStudied" FromRole="DegreeList" ToRole="Studied" />
+        </EntityType>
+        <EntityType Name="IndustryList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CompanyIndustries" Relationship="Self.FK_IIdCompanyIndustry" FromRole="IndustryList" ToRole="CompanyIndustry" />
+        </EntityType>
+        <EntityType Name="Internship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="ApplyBefore" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Stipend" Type="Int32" />
+          <Property Name="InternshipType" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="InternshipIn" Type="Int32" Nullable="false" />
+          <Property Name="AvailableSeats" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="MinDuration" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="MaxDuration" Type="Decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="ContactEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactMobile" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" Nullable="false" />
+          <NavigationProperty Name="Applieds" Relationship="Self.FK_IIdApplied" FromRole="Internship" ToRole="Applied" />
+          <NavigationProperty Name="CategoriesList" Relationship="Self.FK_InternshipIn" FromRole="Internship" ToRole="CategoriesList" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_CId" FromRole="Internship" ToRole="Company" />
+          <NavigationProperty Name="InternshipLocations" Relationship="Self.FK_IIdInternshipLocations" FromRole="Internship" ToRole="InternshipLocations" />
+          <NavigationProperty Name="InternshipPerks" Relationship="Self.FK_IIdInternshipPerks" FromRole="Internship" ToRole="InternshipPerks" />
+          <NavigationProperty Name="InternshipSkills" Relationship="Self.FK_IIdInternshipSkills" FromRole="Internship" ToRole="InternshipSkills" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InternshipLocation">
+          <Key>
+            <PropertyRef Name="I_Id" />
+            <PropertyRef Name="L_Id" />
+          </Key>
+          <Property Name="I_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="L_Id" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="Internship" Relationship="Self.FK_IIdInternshipLocations" FromRole="InternshipLocations" ToRole="Internship" />
+          <NavigationProperty Name="LocationsList" Relationship="Self.FK_LIdInternshipLocations" FromRole="InternshipLocations" ToRole="LocationsList" />
+        </EntityType>
+        <EntityType Name="InternshipPerk">
+          <Key>
+            <PropertyRef Name="I_Id" />
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="I_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="P_Id" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="Internship" Relationship="Self.FK_IIdInternshipPerks" FromRole="InternshipPerks" ToRole="Internship" />
+          <NavigationProperty Name="PerksList" Relationship="Self.FK_PIdInternshipPerks" FromRole="InternshipPerks" ToRole="PerksList" />
+        </EntityType>
+        <EntityType Name="InternshipSkill">
+          <Key>
+            <PropertyRef Name="I_Id" />
+            <PropertyRef Name="S_Id" />
+          </Key>
+          <Property Name="I_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="S_Id" Type="Int32" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="Internship" Relationship="Self.FK_IIdInternshipSkills" FromRole="InternshipSkills" ToRole="Internship" />
+          <NavigationProperty Name="SkillsList" Relationship="Self.FK_SIdInternshipSkills" FromRole="InternshipSkills" ToRole="SkillsList" />
+        </EntityType>
+        <EntityType Name="LocationsList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="InternshipLocations" Relationship="Self.FK_LIdInternshipLocations" FromRole="LocationsList" ToRole="InternshipLocations" />
+        </EntityType>
+        <EntityType Name="PerksList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="InternshipPerks" Relationship="Self.FK_PIdInternshipPerks" FromRole="PerksList" ToRole="InternshipPerks" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProjectOverview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeamLooking" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_CreatedByProject" FromRole="Project" ToRole="Student" />
+          <NavigationProperty Name="ProjectUsers" Relationship="Self.FK_PIdProjectUsers" FromRole="Project" ToRole="ProjectUsers" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="C_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CategoriesList" Relationship="EnvisionModel.FK_CategoryProject" FromRole="Project" ToRole="CategoriesList" />
+          <NavigationProperty Name="Joins" Relationship="EnvisionModel.FK_IIdJoin" FromRole="Project" ToRole="Join" />
+          <Property Name="ProjectHelp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProjectTasks" Relationship="EnvisionModel.FK_PIdProjectTasks" FromRole="Project" ToRole="ProjectTask" />
+        </EntityType>
+        <EntityType Name="ProjectUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="P_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="U_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_PIdProjectUsers" FromRole="ProjectUsers" ToRole="Project" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_UIdProjectUsers" FromRole="ProjectUsers" ToRole="Student" />
+          <Property Name="R_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RoleList" Relationship="EnvisionModel.FK_RIdProjectUsers" FromRole="ProjectUser" ToRole="RoleList" />
+          <NavigationProperty Name="TasksAssigneds" Relationship="EnvisionModel.FK_PUIdTasksAssigned" FromRole="ProjectUser" ToRole="TasksAssigned" />
+        </EntityType>
+        <EntityType Name="SkilledIn">
+          <Key>
+            <PropertyRef Name="U_Id" />
+            <PropertyRef Name="S_ID" />
+          </Key>
+          <Property Name="U_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="S_ID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Precision="2" Scale="1" Nullable="false" />
+          <NavigationProperty Name="SkillsList" Relationship="Self.FK_SIdSkilledIn" FromRole="SkilledIn" ToRole="SkillsList" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_UIdSkilledIn" FromRole="SkilledIn" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="SkillsList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="InternshipSkills" Relationship="Self.FK_SIdInternshipSkills" FromRole="SkillsList" ToRole="InternshipSkills" />
+          <NavigationProperty Name="SkilledIns" Relationship="Self.FK_SIdSkilledIn" FromRole="SkillsList" ToRole="SkilledIn" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CardFront" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="CardBack" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProfilePic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Verified" Type="Boolean" Nullable="false" />
+          <Property Name="RegTime" Type="DateTime" Precision="3" Nullable="false" />
+          <NavigationProperty Name="Applieds" Relationship="Self.FK_SIdApplied" FromRole="Student" ToRole="Applied" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_CreatedByProject" FromRole="Student" ToRole="Project" />
+          <NavigationProperty Name="ProjectUsers" Relationship="Self.FK_UIdProjectUsers" FromRole="Student" ToRole="ProjectUsers" />
+          <NavigationProperty Name="SkilledIns" Relationship="Self.FK_UIdSkilledIn" FromRole="Student" ToRole="SkilledIn" />
+          <NavigationProperty Name="Studieds" Relationship="Self.FK_SIdStudied" FromRole="Student" ToRole="Studied" />
+          <NavigationProperty Name="VolunteerWorks" Relationship="Self.FK_SIdVolunteerWork" FromRole="Student" ToRole="VolunteerWork" />
+          <NavigationProperty Name="WorkExperiences" Relationship="Self.FK_SIdWorkExperience" FromRole="Student" ToRole="WorkExperience" />
+          <NavigationProperty Name="Joins" Relationship="EnvisionModel.FK_SIdJoin" FromRole="Student" ToRole="Join" />
+        </EntityType>
+        <EntityType Name="Studied">
+          <Key>
+            <PropertyRef Name="S_Id" />
+            <PropertyRef Name="Degree" />
+          </Key>
+          <Property Name="S_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoogleId" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Degree" Type="Int32" Nullable="false" />
+          <Property Name="GraduationYear" Type="Decimal" Precision="5" Scale="1" />
+          <NavigationProperty Name="DegreeList" Relationship="Self.FK_DegreeStudied" FromRole="Studied" ToRole="DegreeList" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_SIdStudied" FromRole="Studied" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="TasksList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProjectTasks" Relationship="EnvisionModel.FK_TIdProjectTasks" FromRole="TasksList" ToRole="ProjectTask" />
+        </EntityType>
+        <EntityType Name="VolunteerWork">
+          <Key>
+            <PropertyRef Name="S_Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="Topic" />
+          </Key>
+          <Property Name="S_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoogleId" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Topic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_SIdVolunteerWork" FromRole="VolunteerWork" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="WorkExperience">
+          <Key>
+            <PropertyRef Name="S_Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="Designation" />
+          </Key>
+          <Property Name="S_Id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoogleId" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_SIdWorkExperience" FromRole="WorkExperience" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_IIdApplied">
+          <End Role="Internship" Type="Self.Internship" Multiplicity="1" />
+          <End Role="Applied" Type="Self.Applied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internship">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Applied">
+              <PropertyRef Name="I_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdApplied">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Applied" Type="Self.Applied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Applied">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InternshipIn">
+          <End Role="CategoriesList" Type="Self.CategoriesList" Multiplicity="1" />
+          <End Role="Internship" Type="Self.Internship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriesList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Internship">
+              <PropertyRef Name="InternshipIn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CId">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Internship" Type="Self.Internship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Internship">
+              <PropertyRef Name="C_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CIdCompanyIndustry">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="CompanyIndustry" Type="Self.CompanyIndustry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyIndustry">
+              <PropertyRef Name="C_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IIdCompanyIndustry">
+          <End Role="IndustryList" Type="Self.IndustryList" Multiplicity="1" />
+          <End Role="CompanyIndustry" Type="Self.CompanyIndustry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IndustryList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyIndustry">
+              <PropertyRef Name="I_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DegreeStudied">
+          <End Role="DegreeList" Type="Self.DegreeList" Multiplicity="1" />
+          <End Role="Studied" Type="Self.Studied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DegreeList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Studied">
+              <PropertyRef Name="Degree" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IIdInternshipLocations">
+          <End Role="Internship" Type="Self.Internship" Multiplicity="1" />
+          <End Role="InternshipLocations" Type="Self.InternshipLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internship">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipLocations">
+              <PropertyRef Name="I_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IIdInternshipPerks">
+          <End Role="Internship" Type="Self.Internship" Multiplicity="1" />
+          <End Role="InternshipPerks" Type="Self.InternshipPerk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internship">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipPerks">
+              <PropertyRef Name="I_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IIdInternshipSkills">
+          <End Role="Internship" Type="Self.Internship" Multiplicity="1" />
+          <End Role="InternshipSkills" Type="Self.InternshipSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Internship">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipSkills">
+              <PropertyRef Name="I_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIdInternshipLocations">
+          <End Role="LocationsList" Type="Self.LocationsList" Multiplicity="1" />
+          <End Role="InternshipLocations" Type="Self.InternshipLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LocationsList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipLocations">
+              <PropertyRef Name="L_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PIdInternshipPerks">
+          <End Role="PerksList" Type="Self.PerksList" Multiplicity="1" />
+          <End Role="InternshipPerks" Type="Self.InternshipPerk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PerksList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipPerks">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdInternshipSkills">
+          <End Role="SkillsList" Type="Self.SkillsList" Multiplicity="1" />
+          <End Role="InternshipSkills" Type="Self.InternshipSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkillsList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InternshipSkills">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreatedByProject">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PIdProjectUsers">
+          <End Role="Project" Type="Self.Project" Multiplicity="1" />
+          <End Role="ProjectUsers" Type="Self.ProjectUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectUsers">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UIdProjectUsers">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="ProjectUsers" Type="Self.ProjectUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectUsers">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdSkilledIn">
+          <End Role="SkillsList" Type="Self.SkillsList" Multiplicity="1" />
+          <End Role="SkilledIn" Type="Self.SkilledIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SkillsList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkilledIn">
+              <PropertyRef Name="S_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UIdSkilledIn">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="SkilledIn" Type="Self.SkilledIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SkilledIn">
+              <PropertyRef Name="U_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdStudied">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Studied" Type="Self.Studied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Studied">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdVolunteerWork">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="VolunteerWork" Type="Self.VolunteerWork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VolunteerWork">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdWorkExperience">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="WorkExperience" Type="Self.WorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkExperience">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EnvisionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applieds" EntityType="Self.Applied" />
+          <EntitySet Name="CategoriesLists" EntityType="Self.CategoriesList" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="CompanyIndustries" EntityType="Self.CompanyIndustry" />
+          <EntitySet Name="DegreeLists" EntityType="Self.DegreeList" />
+          <EntitySet Name="IndustryLists" EntityType="Self.IndustryList" />
+          <EntitySet Name="Internships" EntityType="Self.Internship" />
+          <EntitySet Name="InternshipLocations" EntityType="Self.InternshipLocation" />
+          <EntitySet Name="InternshipPerks" EntityType="Self.InternshipPerk" />
+          <EntitySet Name="InternshipSkills" EntityType="Self.InternshipSkill" />
+          <EntitySet Name="LocationsLists" EntityType="Self.LocationsList" />
+          <EntitySet Name="PerksLists" EntityType="Self.PerksList" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="ProjectUsers" EntityType="Self.ProjectUser" />
+          <EntitySet Name="SkilledIns" EntityType="Self.SkilledIn" />
+          <EntitySet Name="SkillsLists" EntityType="Self.SkillsList" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Studieds" EntityType="Self.Studied" />
+          <EntitySet Name="TasksLists" EntityType="Self.TasksList" />
+          <EntitySet Name="VolunteerWorks" EntityType="Self.VolunteerWork" />
+          <EntitySet Name="WorkExperiences" EntityType="Self.WorkExperience" />
+          <AssociationSet Name="FK_IIdApplied" Association="Self.FK_IIdApplied">
+            <End Role="Internship" EntitySet="Internships" />
+            <End Role="Applied" EntitySet="Applieds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdApplied" Association="Self.FK_SIdApplied">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Applied" EntitySet="Applieds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InternshipIn" Association="Self.FK_InternshipIn">
+            <End Role="CategoriesList" EntitySet="CategoriesLists" />
+            <End Role="Internship" EntitySet="Internships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CId" Association="Self.FK_CId">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Internship" EntitySet="Internships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CIdCompanyIndustry" Association="Self.FK_CIdCompanyIndustry">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="CompanyIndustry" EntitySet="CompanyIndustries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IIdCompanyIndustry" Association="Self.FK_IIdCompanyIndustry">
+            <End Role="IndustryList" EntitySet="IndustryLists" />
+            <End Role="CompanyIndustry" EntitySet="CompanyIndustries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DegreeStudied" Association="Self.FK_DegreeStudied">
+            <End Role="DegreeList" EntitySet="DegreeLists" />
+            <End Role="Studied" EntitySet="Studieds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IIdInternshipLocations" Association="Self.FK_IIdInternshipLocations">
+            <End Role="Internship" EntitySet="Internships" />
+            <End Role="InternshipLocations" EntitySet="InternshipLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IIdInternshipPerks" Association="Self.FK_IIdInternshipPerks">
+            <End Role="Internship" EntitySet="Internships" />
+            <End Role="InternshipPerks" EntitySet="InternshipPerks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IIdInternshipSkills" Association="Self.FK_IIdInternshipSkills">
+            <End Role="Internship" EntitySet="Internships" />
+            <End Role="InternshipSkills" EntitySet="InternshipSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIdInternshipLocations" Association="Self.FK_LIdInternshipLocations">
+            <End Role="LocationsList" EntitySet="LocationsLists" />
+            <End Role="InternshipLocations" EntitySet="InternshipLocations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PIdInternshipPerks" Association="Self.FK_PIdInternshipPerks">
+            <End Role="PerksList" EntitySet="PerksLists" />
+            <End Role="InternshipPerks" EntitySet="InternshipPerks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdInternshipSkills" Association="Self.FK_SIdInternshipSkills">
+            <End Role="SkillsList" EntitySet="SkillsLists" />
+            <End Role="InternshipSkills" EntitySet="InternshipSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreatedByProject" Association="Self.FK_CreatedByProject">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PIdProjectUsers" Association="Self.FK_PIdProjectUsers">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectUsers" EntitySet="ProjectUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UIdProjectUsers" Association="Self.FK_UIdProjectUsers">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="ProjectUsers" EntitySet="ProjectUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdSkilledIn" Association="Self.FK_SIdSkilledIn">
+            <End Role="SkillsList" EntitySet="SkillsLists" />
+            <End Role="SkilledIn" EntitySet="SkilledIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UIdSkilledIn" Association="Self.FK_UIdSkilledIn">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="SkilledIn" EntitySet="SkilledIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdStudied" Association="Self.FK_SIdStudied">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Studied" EntitySet="Studieds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdVolunteerWork" Association="Self.FK_SIdVolunteerWork">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="VolunteerWork" EntitySet="VolunteerWorks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdWorkExperience" Association="Self.FK_SIdWorkExperience">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="WorkExperience" EntitySet="WorkExperiences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CategoryProject" Association="EnvisionModel.FK_CategoryProject">
+            <End Role="CategoriesList" EntitySet="CategoriesLists" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <EntitySet Name="RoleLists" EntityType="EnvisionModel.RoleList" />
+          <AssociationSet Name="FK_RIdProjectUsers" Association="EnvisionModel.FK_RIdProjectUsers">
+            <End Role="RoleList" EntitySet="RoleLists" />
+            <End Role="ProjectUser" EntitySet="ProjectUsers" />
+          </AssociationSet>
+          <EntitySet Name="Joins" EntityType="EnvisionModel.Join" />
+          <AssociationSet Name="FK_IIdJoin" Association="EnvisionModel.FK_IIdJoin">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Join" EntitySet="Joins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SIdJoin" Association="EnvisionModel.FK_SIdJoin">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Join" EntitySet="Joins" />
+          </AssociationSet>
+          <EntitySet Name="Logs" EntityType="EnvisionModel.Log" />
+          <EntitySet Name="ProjectTasks" EntityType="EnvisionModel.ProjectTask" />
+          <AssociationSet Name="FK_PIdProjectTasks" Association="EnvisionModel.FK_PIdProjectTasks">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectTask" EntitySet="ProjectTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIdProjectTasks" Association="EnvisionModel.FK_TIdProjectTasks">
+            <End Role="TasksList" EntitySet="TasksLists" />
+            <End Role="ProjectTask" EntitySet="ProjectTasks" />
+          </AssociationSet>
+          <EntitySet Name="TasksAssigneds" EntityType="EnvisionModel.TasksAssigned" />
+          <AssociationSet Name="FK_PTIdTasksAssigned" Association="EnvisionModel.FK_PTIdTasksAssigned">
+            <End Role="ProjectTask" EntitySet="ProjectTasks" />
+            <End Role="TasksAssigned" EntitySet="TasksAssigneds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PUIdTasksAssigned" Association="EnvisionModel.FK_PUIdTasksAssigned">
+            <End Role="ProjectUser" EntitySet="ProjectUsers" />
+            <End Role="TasksAssigned" EntitySet="TasksAssigneds" />
+          </AssociationSet>
+          <EntitySet Name="Contacts" EntityType="EnvisionModel.Contact" />
+          <EntitySet Name="AdminQueries" EntityType="EnvisionModel.AdminQuery" />
+          </EntityContainer>
+        <Association Name="FK_CategoryProject">
+          <End Type="EnvisionModel.CategoriesList" Role="CategoriesList" Multiplicity="1" />
+          <End Type="EnvisionModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoriesList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="C_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RoleList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProjectUsers" Relationship="EnvisionModel.FK_RIdProjectUsers" FromRole="RoleList" ToRole="ProjectUser" />
+        </EntityType>
+        <Association Name="FK_RIdProjectUsers">
+          <End Type="EnvisionModel.RoleList" Role="RoleList" Multiplicity="1" />
+          <End Type="EnvisionModel.ProjectUser" Role="ProjectUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectUser">
+              <PropertyRef Name="R_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Join">
+          <Key>
+            <PropertyRef Name="S_Id" />
+            <PropertyRef Name="P_Id" />
+          </Key>
+          <Property Name="S_Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="P_Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="EnvisionModel.FK_IIdJoin" FromRole="Join" ToRole="Project" />
+          <NavigationProperty Name="Student" Relationship="EnvisionModel.FK_SIdJoin" FromRole="Join" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_IIdJoin">
+          <End Type="EnvisionModel.Project" Role="Project" Multiplicity="1" />
+          <End Type="EnvisionModel.Join" Role="Join" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Join">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SIdJoin">
+          <End Type="EnvisionModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="EnvisionModel.Join" Role="Join" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Join">
+              <PropertyRef Name="S_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserType" />
+            <PropertyRef Name="Link" />
+            <PropertyRef Name="Time" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Link" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HostName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProjectTask">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="P_Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="T_Id" Type="Int32" Nullable="false" />
+          <Property Name="DeadLine" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Project" Relationship="EnvisionModel.FK_PIdProjectTasks" FromRole="ProjectTask" ToRole="Project" />
+          <NavigationProperty Name="TasksList" Relationship="EnvisionModel.FK_TIdProjectTasks" FromRole="ProjectTask" ToRole="TasksList" />
+          <NavigationProperty Name="TasksAssigneds" Relationship="EnvisionModel.FK_PTIdTasksAssigned" FromRole="ProjectTask" ToRole="TasksAssigned" />
+        </EntityType>
+        <Association Name="FK_PIdProjectTasks">
+          <End Type="EnvisionModel.Project" Role="Project" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EnvisionModel.ProjectTask" Role="ProjectTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTask">
+              <PropertyRef Name="P_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIdProjectTasks">
+          <End Type="EnvisionModel.TasksList" Role="TasksList" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EnvisionModel.ProjectTask" Role="ProjectTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TasksList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectTask">
+              <PropertyRef Name="T_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TasksAssigned">
+          <Key>
+            <PropertyRef Name="PU_Id" />
+            <PropertyRef Name="PT_Id" />
+          </Key>
+          <Property Name="PU_Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PT_Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProjectTask" Relationship="EnvisionModel.FK_PTIdTasksAssigned" FromRole="TasksAssigned" ToRole="ProjectTask" />
+          <NavigationProperty Name="ProjectUser" Relationship="EnvisionModel.FK_PUIdTasksAssigned" FromRole="TasksAssigned" ToRole="ProjectUser" />
+        </EntityType>
+        <Association Name="FK_PTIdTasksAssigned">
+          <End Type="EnvisionModel.ProjectTask" Role="ProjectTask" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EnvisionModel.TasksAssigned" Role="TasksAssigned" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectTask">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TasksAssigned">
+              <PropertyRef Name="PT_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PUIdTasksAssigned">
+          <End Type="EnvisionModel.ProjectUser" Role="ProjectUser" Multiplicity="1" />
+          <End Type="EnvisionModel.TasksAssigned" Role="TasksAssigned" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TasksAssigned">
+              <PropertyRef Name="PU_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Msg" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Read" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdminQuery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Query" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EnvisionModelStoreContainer" CdmEntityContainer="EnvisionEntities">
+          <EntitySetMapping Name="Applieds">
+            <EntityTypeMapping TypeName="EnvisionModel.Applied">
+              <MappingFragment StoreEntitySet="Applied">
+                <ScalarProperty Name="S_Id" ColumnName="S_Id" />
+                <ScalarProperty Name="I_Id" ColumnName="I_Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategoriesLists">
+            <EntityTypeMapping TypeName="EnvisionModel.CategoriesList">
+              <MappingFragment StoreEntitySet="CategoriesList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="EnvisionModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="WebsiteURL" ColumnName="WebsiteURL" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Verified" ColumnName="Verified" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+                <ScalarProperty Name="GoogleId" ColumnName="GoogleId" />
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyIndustries">
+            <EntityTypeMapping TypeName="EnvisionModel.CompanyIndustry">
+              <MappingFragment StoreEntitySet="CompanyIndustry">
+                <ScalarProperty Name="C_Id" ColumnName="C_Id" />
+                <ScalarProperty Name="I_Id" ColumnName="I_Id" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DegreeLists">
+            <EntityTypeMapping TypeName="EnvisionModel.DegreeList">
+              <MappingFragment StoreEntitySet="DegreeList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndustryLists">
+            <EntityTypeMapping TypeName="EnvisionModel.IndustryList">
+              <MappingFragment StoreEntitySet="IndustryList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Internships">
+            <EntityTypeMapping TypeName="EnvisionModel.Internship">
+              <MappingFragment StoreEntitySet="Internship">
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="C_Id" ColumnName="C_Id" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ApplyBefore" ColumnName="ApplyBefore" />
+                <ScalarProperty Name="Stipend" ColumnName="Stipend" />
+                <ScalarProperty Name="InternshipType" ColumnName="InternshipType" />
+                <ScalarProperty Name="InternshipIn" ColumnName="InternshipIn" />
+                <ScalarProperty Name="AvailableSeats" ColumnName="AvailableSeats" />
+                <ScalarProperty Name="MinDuration" ColumnName="MinDuration" />
+                <ScalarProperty Name="MaxDuration" ColumnName="MaxDuration" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactMobile" ColumnName="ContactMobile" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InternshipLocations">
+            <EntityTypeMapping TypeName="EnvisionModel.InternshipLocation">
+              <MappingFragment StoreEntitySet="InternshipLocations">
+                <ScalarProperty Name="I_Id" ColumnName="I_Id" />
+                <ScalarProperty Name="L_Id" ColumnName="L_Id" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InternshipPerks">
+            <EntityTypeMapping TypeName="EnvisionModel.InternshipPerk">
+              <MappingFragment StoreEntitySet="InternshipPerks">
+                <ScalarProperty Name="I_Id" ColumnName="I_Id" />
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InternshipSkills">
+            <EntityTypeMapping TypeName="EnvisionModel.InternshipSkill">
+              <MappingFragment StoreEntitySet="InternshipSkills">
+                <ScalarProperty Name="I_Id" ColumnName="I_Id" />
+                <ScalarProperty Name="S_Id" ColumnName="S_Id" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationsLists">
+            <EntityTypeMapping TypeName="EnvisionModel.LocationsList">
+              <MappingFragment StoreEntitySet="LocationsList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PerksLists">
+            <EntityTypeMapping TypeName="EnvisionModel.PerksList">
+              <MappingFragment StoreEntitySet="PerksList">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="EnvisionModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="ProjectHelp" ColumnName="ProjectHelp" />
+                <ScalarProperty Name="C_Id" ColumnName="C_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectOverview" ColumnName="ProjectOverview" />
+                <ScalarProperty Name="TeamLooking" ColumnName="TeamLooking" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Pic" ColumnName="Pic" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectUsers">
+            <EntityTypeMapping TypeName="EnvisionModel.ProjectUser">
+              <MappingFragment StoreEntitySet="ProjectUsers">
+                <ScalarProperty Name="R_Id" ColumnName="R_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SkilledIns">
+            <EntityTypeMapping TypeName="EnvisionModel.SkilledIn">
+              <MappingFragment StoreEntitySet="SkilledIn">
+                <ScalarProperty Name="U_Id" ColumnName="U_Id" />
+                <ScalarProperty Name="S_ID" ColumnName="S_ID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SkillsLists">
+            <EntityTypeMapping TypeName="EnvisionModel.SkillsList">
+              <MappingFragment StoreEntitySet="SkillsList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="EnvisionModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="CardFront" ColumnName="CardFront" />
+                <ScalarProperty Name="CardBack" ColumnName="CardBack" />
+                <ScalarProperty Name="ProfilePic" ColumnName="ProfilePic" />
+                <ScalarProperty Name="Verified" ColumnName="Verified" />
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Studieds">
+            <EntityTypeMapping TypeName="EnvisionModel.Studied">
+              <MappingFragment StoreEntitySet="Studied">
+                <ScalarProperty Name="S_Id" ColumnName="S_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GoogleId" ColumnName="GoogleId" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="GraduationYear" ColumnName="GraduationYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TasksLists">
+            <EntityTypeMapping TypeName="EnvisionModel.TasksList">
+              <MappingFragment StoreEntitySet="TasksList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VolunteerWorks">
+            <EntityTypeMapping TypeName="EnvisionModel.VolunteerWork">
+              <MappingFragment StoreEntitySet="VolunteerWork">
+                <ScalarProperty Name="S_Id" ColumnName="S_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GoogleId" ColumnName="GoogleId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkExperiences">
+            <EntityTypeMapping TypeName="EnvisionModel.WorkExperience">
+              <MappingFragment StoreEntitySet="WorkExperience">
+                <ScalarProperty Name="S_Id" ColumnName="S_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GoogleId" ColumnName="GoogleId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleLists">
+            <EntityTypeMapping TypeName="EnvisionModel.RoleList">
+              <MappingFragment StoreEntitySet="RoleList">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Joins">
+            <EntityTypeMapping TypeName="EnvisionModel.Join">
+              <MappingFragment StoreEntitySet="Join">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+                <ScalarProperty Name="S_Id" ColumnName="S_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="EnvisionModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectTasks">
+            <EntityTypeMapping TypeName="EnvisionModel.ProjectTask">
+              <MappingFragment StoreEntitySet="ProjectTasks">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DeadLine" ColumnName="DeadLine" />
+                <ScalarProperty Name="T_Id" ColumnName="T_Id" />
+                <ScalarProperty Name="P_Id" ColumnName="P_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TasksAssigneds">
+            <EntityTypeMapping TypeName="EnvisionModel.TasksAssigned">
+              <MappingFragment StoreEntitySet="TasksAssigned">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="PT_Id" ColumnName="PT_Id" />
+                <ScalarProperty Name="PU_Id" ColumnName="PU_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="EnvisionModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="Read" ColumnName="Read" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminQueries">
+            <EntityTypeMapping TypeName="EnvisionModel.AdminQuery">
+              <MappingFragment StoreEntitySet="AdminQuery">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

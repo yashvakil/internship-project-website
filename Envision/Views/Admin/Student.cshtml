@@ -1,0 +1,667 @@
+﻿@model Envision.Models.StudentView
+<!DOCTYPE html>
+<html>
+<head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Envision</title>
+    <!-- Bootstrap core CSS-->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Page level plugin CSS-->
+    <link href="~/Content/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="~/Content/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .w3-text-envision, .w3-hover-text-envision:hover {
+            color: #032042 !important;
+        }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: #000;
+                padding: 14px 16px;
+                background-color: inherit;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #032042;
+                color: #ffffff;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #032042;
+                    color: #fff;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+
+        .skills {
+            width: 100%;
+            background-color: #E0E0E0;
+            border-radius: 10px;
+            position: relative;
+            color: #333; /* position the header relative to the div */
+        }
+
+            .skills ul {
+                padding: 20px 10px 10px 10px;
+                margin: 0;
+            }
+
+            .skills .header {
+                margin: 0;
+                padding: 0 5px;
+                font-size: 20px;
+                position: absolute;
+                top: -20px;
+                left: 30px;
+                background: white;
+                border-bottom-right-radius: 7px;
+                border-bottom-left-radius: 7px;
+            }
+
+            .skills li {
+                font-size: 16px;
+                margin: 5px 5px;
+                display: inline-block;
+                padding: 4px 10px;
+                border: 1px solid #B8B8B8;
+                border-radius: 5px;
+                background-color: #EBEBEB;
+                background-size: 16px;
+            }
+
+        .sticker-tiles {
+            list-style: none;
+            margin: 0;
+            overflow: hidden;
+            padding: 0;
+        }
+
+            .sticker-tiles li {
+                margin: 10px;
+            }
+
+                .sticker-tiles li:before,
+                .sticker-tiles li:after {
+                    bottom: 29px;
+                    box-shadow: 0 30px 4px rgba(0, 0, 0, 0.5);
+                    content: "";
+                    height: 30px;
+                    position: absolute;
+                    width: 48%;
+                    z-index: -1;
+                }
+
+                .sticker-tiles li div {
+                    background: #f8f8f8;
+                    color: #032042;
+                    display: block;
+                    font: 14px sans-serif;
+                    line-height: 19px;
+                    text-decoration: none;
+                }
+
+        .fa-button {
+            background: transparent;
+            cursor: pointer;
+            border: none;
+        }
+
+        .form {
+            padding-bottom: 10px;
+        }
+
+            .form label {
+                font-weight: 500;
+                font-size: 20px;
+            }
+
+            .form input[type="number"] {
+                width: 20%;
+                height: 30px;
+                border: 1px solid;
+                border-radius: 2px;
+                padding-left: 10px;
+            }
+
+            .form input[type="text"], .form input[type="email"] {
+                width: 60%;
+                height: 30px;
+                border: 1px solid;
+                border-radius: 2px;
+                padding-left: 10px;
+            }
+
+            .form input[type="number"]:checked, .form input[type="number"]:focus, .form input[type="number"]:active {
+                border: 1px solid #032042;
+            }
+
+            .form select {
+                min-width: 200px;
+                border-radius: 2px;
+                height: 30px;
+                border-radius: 2px;
+                padding-left: 10px;
+            }
+
+            .form input[type="submit"] {
+                background-color: #032042;
+                color: white;
+                border: none;
+                padding: 5px 30px;
+                font-size: 1rem;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+        input[type="submit"]:hover {
+            opacity: 0.5;
+        }
+
+        #map-education, #map-volunteer, #map-volunteer {
+            width: 100%;
+        }
+
+        .controls-education, .controls-work, .controls-volunteer {
+            background-color: #fff;
+            border-radius: 2px;
+            border: 1px solid transparent;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            height: 29px;
+            margin-left: 17px;
+            margin-top: 10px;
+            outline: none;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 400px;
+        }
+
+            .controls-education:focus, .controls-volunteer:focus, .controls-volunteer:focus {
+                border-color: #4d90fe;
+            }
+
+        .title {
+            font-weight: bold;
+        }
+
+        #infowindow-content-education, #infowindow-content-work, #infowindow-content-volunteer {
+            display: none;
+        }
+
+        #map-work #infowindow-content-work {
+            display: inline;
+        }
+
+        #map-education #infowindow-content-education {
+            display: inline;
+        }
+
+        #map-volunteer #infowindow-content-volunteer {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body class="w3-light-grey">
+
+    @Html.Partial("~/Views/Shared/AdminHeader.cshtml")
+    @{
+        Dictionary<string, string> dict = new Dictionary<string, string>();
+        dict["AP"] = "Approved";
+        dict["ST"] = "Starred";
+        dict["DN"] = "Denied";
+        dict["IP"] = "No Status";
+    }
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="w3-container" style="max-width:1400px;margin-top:100px;">
+                <div class="w3-row-padding">
+                    <div class="w3-half">
+                    @{
+                        string imageBase641 = Convert.ToBase64String(Model.CardFront);
+                        string imageSrc1 = string.Format("data:image/jpg;base64,{0}", imageBase641);
+                        <img src="@imageSrc1" alt="Avatar" style="width:100%" />
+                    }
+                    </div>
+                    <div class="w3-half">
+                        @{
+                            string imageBase642 = Convert.ToBase64String(Model.CardBack);
+                            string imageSrc2 = string.Format("data:image/jpg;base64,{0}", imageBase642);
+                            <img src="@imageSrc2" alt="Avatar" style="width:100%" />
+                        }
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-top">
+                    <form action="/Admin/EditStudent" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        <input type="file" name="cardfront" />
+                        <input type="Submit" />
+                    </form>
+                </div>
+                <div class="w3-row-padding w3-margin-top w3-container">
+                    <button onclick="window.location.href = '/Admin/DeleteStudent?studentid=@Model.Id'"> Delete </button>
+                    @if (!Model.Verified)
+                    {
+                        <button onclick="window.location.href='/Admin/VerifyStudent?studentid=@Model.Id'"> Verify </button>
+                    }
+                </div>
+                <!-- The Grid -->
+                <div class="w3-row-padding w3-margin-top">
+
+                    <!-- Left Column -->
+                    <div class="w3-third">
+
+                        <div class="w3-white w3-text-grey w3-card-4">
+                            <div class="w3-display-container">
+
+                                @if (Model.ProfilePic == null)
+                                {
+                                    <img src="~/Content/images/chicken.jpg" style="width:100%" />
+                                }
+                                else
+                                {
+                                    string imageBase64 = Convert.ToBase64String(Model.ProfilePic);
+                                    string imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                                    <img src="@imageSrc" alt="Avatar" style="width:100%" />
+                                }
+                                <div class="w3-display-bottomleft w3-container w3-text-black" style="background-color:rgba(255,255,255,0.5);width:100%;">
+                                    <h2 style="opacity:1">
+                                        @Model.FirstName @Model.LastName
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="w3-container">
+                                <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-envision"></i>@Html.DisplayFor(model => Model.Email)</p>
+                                <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-envision"></i>@Html.DisplayFor(model => Model.Mobile)</p>
+                                @{
+                                    var sd = ((DateTime)Model.DOB).ToShortDateString();
+                                }
+                                <p><i class="fa fa-calendar-o fa-fw w3-margin-right w3-large w3-text-envision"></i>@sd</p>
+                                <hr>
+
+
+                                <div class="skills">
+                                    <h2 class="header">
+                                        Skills Overview
+                                    </h2>
+                                    <ul>
+                                        @foreach (Envision.Models.StudentView.SkilledIn s in Model.SkilledIns)
+                                        {
+                                            var value = Convert.ToInt16(s.Value);
+                                            <li>
+                                                @s.Name &nbsp;@value/5
+                                                @if (Session["user_id"] != null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                                                {
+                                                    <button class="fa-button w3-margin-left" onclick="window.location.href='/Extra/Skill?id=@s.Id'"><i class="fa fa-trash-o"></i></button>
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                                <br>
+                            </div>
+                        </div><br>
+
+                        <!-- End Left Column -->
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="w3-twothird">
+
+                        <div class="w3-container w3-card w3-white w3-margin-bottom">
+                            <h2 class="w3-text-grey w3-padding">
+                                Education
+                            </h2>
+                            <ul class="sticker-tiles">
+                                @foreach (Envision.Models.StudentView.Studied s in Model.Studieds)
+                                {
+                                    <li>
+                                        <div class="w3-container">
+                                            <h5>
+                                                <b>@s.Name</b>
+                                                @if (Session["user_id"] != null && Session["user_id"].Equals(Model.Id) && Session["user_type"].Equals("STD"))
+                                                {
+                                                    var graduation = s.GraduationYear == null ? "null" : s.GraduationYear.ToString();
+                                                    <button class="fa-button w3-margin-left" onclick="window.location.href='/Extra/Education?name=@s.Name&degree=@s.Degree&graduation=@graduation'"><i class="fa fa-trash-o"></i></button>
+                                                }
+                                            </h5>
+                                            <h6>@s.Degree</h6>
+                                            @if (!string.IsNullOrWhiteSpace(s.GraduationYear.ToString()))
+                                            {
+                                                var g = Convert.ToInt32(s.GraduationYear);
+                                                <h6 class="w3-text-envision"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Graduated On:&nbsp;@g</h6>
+                                            }
+                                            else
+                                            {
+                                                <h6>Graduated On:&nbsp;<span class="w3-tag w3-envision-blue w3-round">Current</span></h6>
+                                            }
+                                        </div>
+                                        <hr />
+                                    </li>
+
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="w3-container w3-card w3-white w3-margin-bottom">
+                            <h2 class="w3-text-grey w3-padding">
+                                Work Experience
+                            </h2>
+                            <ul class="sticker-tiles">
+                                @foreach (Envision.Models.StudentView.WorkExperience w in Model.WorkExperiences)
+                                {
+                                    <li>
+                                        <div class="w3-container">
+                                            <h5>
+                                                <b>@w.Name</b>
+                                            </h5>
+                                            <h6>@w.Designation</h6>
+                                            @{
+
+                                                if (w.EndDate != null)
+                                                {
+                                                    var startdate = ((DateTime)w.StartDate).ToShortDateString();
+                                                    var months = ((DateTime)w.EndDate).Month - ((DateTime)w.StartDate).Month + 12 * (((DateTime)w.EndDate).Year - ((DateTime)w.StartDate).Year);
+                                                    var enddate = ((DateTime)w.EndDate).ToShortDateString();
+                                                    <h6 class="w3-text-envision"><i class="fa fa-calendar fa-fw w3-margin-right"></i>@startdate - @enddate</h6>
+                                                    <h6>@months Months</h6>
+                                                }
+                                                else
+                                                {
+                                                    var startdate = ((DateTime)w.StartDate).ToShortDateString();
+                                                    <h6 class="w3-text-envision"><i class="fa fa-calendar fa-fw w3-margin-right"></i>@startdate - <span class="w3-tag w3-envision-blue w3-round">Current</span></h6>
+                                                }
+                                            }
+                                        </div>
+                                        <hr />
+                                    </li>
+
+                                                }
+                            </ul>
+                        </div>
+
+                        <div class="w3-container w3-card w3-white w3-margin-bottom">
+                            <h2 class="w3-text-grey w3-padding">
+                                Volunteer Work
+
+                            </h2>
+
+                            <ul class="sticker-tiles">
+                                @foreach (Envision.Models.StudentView.VolunteerWork v in Model.VolunteerWorks)
+                                {
+                                    <li>
+                                        <div class="w3-container">
+                                            <h5>
+                                                <b>@v.Name</b>
+
+                                            </h5>
+                                            <h6>@v.Topic</h6>
+                                            @{
+                                                var startdate = ((DateTime)v.StartDate).ToShortDateString();
+                                                if (v.EndDate != null)
+                                                {
+                                                    var months = ((DateTime)v.EndDate).Month - ((DateTime)v.StartDate).Month + 12 * (((DateTime)v.EndDate).Year - ((DateTime)v.StartDate).Year);
+                                                    var enddate = ((DateTime)v.EndDate).ToShortDateString();
+                                                    <h6 class="w3-text-envision"><i class="fa fa-calendar fa-fw w3-margin-right"></i>@startdate - @enddate</h6>
+                                                    <h6>@months Months</h6>
+                                                }
+                                                else
+                                                {
+                                                    <h6 class="w3-text-envision"><i class="fa fa-calendar fa-fw w3-margin-right"></i>@startdate - <span class="w3-tag w3-envision-blue w3-round">Current</span></h6>
+                                                }
+                                            }
+                                        </div>
+                                        <hr />
+                                    </li>
+
+                                                }
+                            </ul>
+                        </div>
+
+
+                        <!-- End Right Column -->
+                    </div>
+                    <!-- End Grid -->
+                </div>
+                <div class="w3-row-padding w3-margin-top">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fa fa-table"></i> Applied For Internships
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Company</th>
+                                            <th>Internship In</th>
+                                            <th>Current Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Applieds)
+                                        {
+                                            <tr class="@item.Status">
+                                                <td>@item.C_Name</td>
+                                                <td>@item.InternshipIn</td>
+                                                <td>@dict[item.Status]</td>
+                                                <td style="background:#fff;">
+                                                    <button type="button" class="button" onclick="window.location.href = '/Internship/Details/@item.I_Id'">Details</button>
+                                                    <button type="button" class="button w3-margin-left" onclick="window.location.href='/Internship/Apply?studentid=@Model.Id&internshipid=@item.I_Id&status=AP'">Approve</button>
+                                                    @if (item.Status.Equals("ST"))
+                                                    {
+                                                        <i class="fa fa-star fa-lg w3-margin-left"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-star-o fa-lg w3-margin-left" style="cursor:pointer" onclick="window.location.href='/Internship/Apply?studentid=@Model.Id&internshipid=@item.I_Id&status=ST'"></i>
+                                                    }
+                                                    @if (!item.Status.Equals("DN"))
+                                                    {
+                                                        <i class="fa fa-times fa-lg w3-margin-left" style="cursor:pointer" onclick="window.location.href='/Internship/Apply?studentid=@Model.Id&internshipid=@item.I_Id&status=DN'"></i>
+                                                    }
+
+                                                </td>
+                                            </tr>
+                                         }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-top">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fa fa-table"></i> Wants to Join Projects
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Created By</th>
+                                            <th>Category</th>
+                                            <th>Action</th>
+                                            <th>Approve</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        @foreach (var item in Model.ProjectJoins)
+                                        {
+
+                                            <tr class="@item.Status">
+                                                <td>@item.Name</td>
+                                                <td>@item.CreatedBy</td>
+                                                <td>@item.Category</td>
+                                                <td style="background:#fff;">
+                                                    <button type="button" class="button" onclick="window.location.href = '/Project/Details/@item.P_Id'">Details</button>
+                                                    @if (item.Status.Equals("ST"))
+                                                    {
+                                                        <i class="fa fa-star fa-lg w3-margin-left" style="cursor:pointer" onclick="window.location.href='/Project/Join?studentid=@Model.Id&projectid=@item.P_Id&status=IP'"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-star-o fa-lg w3-margin-left" style="cursor:pointer" onclick="window.location.href='/Project/Join?studentid=@Model.Id&projectid=@item.P_Id&status=ST'"></i>
+                                                    }
+                                                    @if (!item.Status.Equals("DN"))
+                                                    {
+                                                        <i class="fa fa-times fa-lg w3-margin-left" style="cursor:pointer" onclick="window.location.href='/Project/Join?studentid=@Model.Id&projectid=@item.P_Id&status=DN'"></i>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <form action="/Project/JoinApprove" method="post">
+                                                        <input type="hidden" name="studentid" value="@Model.Id" />
+                                                        <input type="hidden" name="projectid" value="item.P_Id" />
+                                                        <select style="min-width:100px;margin-right:20px;height:30px;border-radius:3px;" name="role">
+                                                            @foreach (var l in ViewBag.Roles)
+                                                            {
+                                                                <option value="@l.Id">@l.Name</option>
+                                                            }
+                                                        </select>
+                                                        <input type="submit" class="button" value="Submit">
+                                                    </form>
+                                                </td>
+                                            </tr>
+
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-top">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <i class="fa fa-table"></i> Is A Member Of
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Current Role</th>
+                                            <th>Action</th>
+                                            <th>Update</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model.ProjectUsers)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@item.Role</td>
+                                                <td><i class="fa fa-trash-o" onclick="window.location.href='/Project/DeleteApprove?userid=@Model.Id&projectid=@item.P_Id'"></i></td>
+                                                <td>
+                                                    <form action="/Project/JoinApprove" method="post">
+                                                        <input type="hidden" name="studentid" value="@Model.Id" />
+                                                        <input type="hidden" name="projectid" value="@item.P_Id" />
+                                                        <select style="min-width:100px;margin-right:20px;height:30px;border-radius:3px;" name="role">
+                                                            @foreach (var l in ViewBag.Roles)
+                                                            {
+                                                                <option value="@l.Id">@l.Name</option>
+                                                            }
+                                                        </select>
+                                                        <input type="submit" class="button" value="Update">
+                                                    </form>
+
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Page Container -->
+            </div>    
+        </div>
+    </div>
+
+
+        <!-- Page Container -->
+        
+
+
+        <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+        <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/Content/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="~/Content/vendor/chart.js/Chart.min.js"></script>
+        <script src="~/Content/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="~/Content/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/Content/js/sb-admin.min.js"></script>
+        <!-- Custom scripts for this page-->
+        <script src="~/Content/js/sb-admin-datatables.min.js"></script>
+        <script src="~/Content/js/sb-admin-charts.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('table.display').DataTable();
+            });
+        </script>
+</body>
+</html>

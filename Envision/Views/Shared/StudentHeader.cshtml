@@ -1,0 +1,53 @@
+﻿<div class="w3-top">
+    <div class="w3-bar w3-white w3-card-2" style="opacity:0.9;" id="myNavbar">
+        <div class="w3-left w3-hide-small">
+            <a href="/Home/Index" class="w3-bar-item w3-button"><img src="~/Content/images/Envision-Logo.png" width="150px" height="23px"></a>
+        </div>
+
+        <!-- Right-sided navbar links -->
+        <div class="w3-right w3-hide-small">
+            <a href="/Internship/Index" class="w3-bar-item w3-button w3-hover-envision-blue"><i class="fa fa-briefcase"></i> INTERNSHIP</a>
+            <a href="/Project/Index" class="w3-bar-item w3-button w3-hover-envision-blue"><i class="fa fa-archive"></i> PROJECTS</a>
+            <div class="dropdown">
+                <div class="dropbtn w3-bar-item w3-hover-envision-blue">
+                    <i class="fa fa-user"></i>
+                    Data
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div class="dropdown-content">
+                    <a href="/Student/Details/@Session["user_id"]">Profile</a>
+                    <a href="/Student/Projects/">My Projects</a>
+                </div>
+            </div>
+            <a href="/Home/Logout" class="w3-bar-item w3-button w3-hover-envision-blue"><i class="fa fa-sign-out"></i>LOGOUT</a>
+
+        </div>
+        <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-left w3-hide-large w3-hide-medium" onclick="w3_open()">
+            <i class="fa fa-bars w3-large"></i>
+        </a>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="">
+            <i class="fa fa-users w3-large"></i>
+        </a>
+
+    </div>
+    <!-- Sidebar on small screens when clicking the menu icon -->
+    <nav class="w3-sidebar w3-bar-block w3-black w3-card-2 w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_open()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+        <a href="/Internship/Index" onclick="w3_open()" class="w3-bar-item w3-button">INTERNSHIP</a>
+        <a href="/Project/Index" onclick="w3_open()" class="w3-bar-item w3-button">PROJECT</a>
+        <a href="/Student/Details/@Session["user_id"]" class="w3-bar-item w3-button">PROFILE</a>
+        <a href="/Home/Logout" class="w3-bar-item w3-button">LOGOUT</a>
+    </nav>
+    <script>
+            function w3_open() {
+                if (mySidebar.style.display === 'block') {
+                    mySidebar.style.display = 'none';
+                } else {
+                    mySidebar.style.display = 'block';
+                }
+            }
+    </script>
+</div>
+

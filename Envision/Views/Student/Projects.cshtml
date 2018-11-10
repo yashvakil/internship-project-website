@@ -1,0 +1,261 @@
+﻿@model IEnumerable<Envision.Models.ProjectView>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Envision</title>
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: #000;
+                padding: 14px 16px;
+                background-color: inherit;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #032042;
+                color: #ffffff;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #032042;
+                    color: #fff;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Raleway", sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+
+
+        .skills {
+            width: 95%;
+            margin: 0 auto;
+            border-radius: 10px;
+            position: relative;
+            color: #333; /* position the header relative to the div */
+        }
+
+            .skills ul {
+                padding: 20px 10px 10px 10px;
+                margin: 0;
+                text-align: center;
+            }
+
+            .skills li {
+                margin: 5px 5px;
+                padding: 0px;
+                display: inline-block;
+                border: 1px solid #B8B8B8;
+                border-radius: 5px;
+                margin: 20px 10px;
+            }
+
+        .w3-project-card {
+            text-align: left;
+            display: inline-flex;
+            padding: 0px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px 0px, rgba(0, 0, 0, 0.1) 0px 2px 2px;
+            border-radius: 5px;
+            overflow: visible;
+            width: 300px;
+            flex-direction: column;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .w3-project-container {
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+            position: relative;
+            z-index: 0;
+            justify-content: center;
+        }
+
+        .w3-project-category {
+            display: flex;
+            align-items: center;
+            height: 22px;
+            padding-left: 20px;
+            font-weight: 300;
+            letter-spacing: 0.03rem;
+            font-size: 0.75rem;
+            background-color: rgba(103, 159, 177, 0.953);
+            color: #fff;
+        }
+
+        .w3-project-heading {
+            font-family: "Raleway", Arial, Helvetica, sans-serif;
+            color: #292929;
+            font-size: 15px;
+            font-weight: 800;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            margin: 0px 8px;
+        }
+
+        .w3-project-description {
+            font-size: 10.0pt;
+            line-height: 19px;
+            overflow: hidden;
+            margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        .w3-project-linear-gradient {
+            width: 100%;
+            height: 40px;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            background: linear-gradient(0deg, rgb(255, 255, 255) 0px, rgba(255, 255, 255, 0));
+        }
+
+        .w3-project-button-bar {
+            position: relative;
+            display: flex;
+            padding: 10px 0px 10px 20px;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .wrap {
+            padding: 1em;
+            width: 100%;
+            max-width: 640px;
+        }
+
+        .filter-bar {
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            padding: 1em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+            .filter-bar > .text {
+                font-weight: 500;
+                margin-right: 10px;
+                flex: 0;
+            }
+    </style>
+</head>
+<body>
+    @if (Session["user_type"].Equals("STD"))
+    {
+        @Html.Partial("~/Views/Shared/StudentHeader.cshtml")
+    }
+    else if (Session["user_type"].Equals("CMP"))
+    {
+        @Html.Partial("~/Views/Shared/CompanyHeader.cshtml")
+    }
+    else
+    {
+        @Html.Partial("~/Views/Shared/GuestHeader.cshtml")
+    }
+    @if (!string.IsNullOrWhiteSpace(ViewBag.ResError))
+    {
+        <div class="w3-content" style="margin-top:100px;">
+            <span class="w3-text-red">@ViewBag.Message</span>
+        </div>
+    }
+
+    @if (string.IsNullOrWhiteSpace(ViewBag.ResError) && Model != null)
+    {
+        <div class="skills" style="margin-top:100px;">
+
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li onclick="window.location.href = '/Project/Details/@item.Id'">
+                        <div class="w3-project-card w3-white">
+                            <div style="cursor: pointer">
+                                <div style="position: relative;">
+                                    <div style="width: 100%;height:200px;display:flex;justify-content:center;overflow:hidden">
+                                        @if (item.Pic == null)
+                                        {
+                                            <img src="~/Content/images/project_bg.png" style="border-radius: 3px 3px 0px 0px;flex:0;min-width:100%;min-height:100%;">
+                                        }
+                                        else
+                                        {
+                                            string imageBase64 = Convert.ToBase64String(item.Pic);
+                                            string imageSrc = string.Format("data:image/jpg;base64,{0}", imageBase64);
+                                            <img src="@imageSrc" alt="AVATAR" style="border-radius: 3px 3px 0px 0px;flex:0;min-width:100%;min-height:100%;">
+                                        }
+                                    </div>
+                                </div>
+                                <div class="w3-envision-blue w3-project-category">@Html.DisplayFor(model => item.Category)</div>
+                                <div style="padding: 0.4rem 0.5rem 0rem;">
+                                    <div class="w3-project-heading">
+                                        @Html.DisplayFor(model => item.Name)
+                                    </div>
+                                    <div style="position: relative;">
+                                        <div class="w3-project-description" style="height: 80px;">
+                                            @Html.DisplayFor(model => item.ProjectOverview)
+                                        </div>
+                                        <div class="w3-project-linear-gradient"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w3-project-button-bar">
+                                <div style="position:relative;display: flex">
+                                    <div><i class="fa fa-users"></i>&nbsp;@item.CountUsers</div>
+                                </div>
+                                <div class="w3-envision-blue" style="cursor: pointer;padding: 0px 20px;margin-right: 20px;" onclick="window.location.href='/Project/Details/@item.Id'">Details</div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+    
+</body>
+</html>
